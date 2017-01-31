@@ -13,6 +13,8 @@ Available examples are:
 | SDKTest.php             | How to initialize the SDK                     |
 | paid.php                | Landing page example if a payment is accepted |
 | ipn.php                 | Instant Payment Notification script example   |
+| createACardToken.php    | How-to create a card token for later use      |
+| chargeAToken.php        | How-to use a card token                       |
 
 
 ## Try it with docker
