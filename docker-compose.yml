@@ -1,0 +1,6 @@
+krypton_php_examples:
+  image: php:7.0-apache
+  volumes:
+    - ./www/:/var/www/html/
+  ports:
+    - 6980:80

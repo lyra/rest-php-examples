@@ -1,0 +1,12 @@
+{
+    "license": "MIT",
+    "description": "Lyra Network REST api PHP code samples",
+    "keywords": ["LyraNetwork", "php", "sdk", "creditcard", "payment"],
+    "require": {
+        "php": ">=5.3.3",
+        "lyranetwork/krypton-php-sdk": "~3.0"
+    },
+    "autoload": {
+        "psr-0": { "LyraNetwork": "src/" }
+    }
+}

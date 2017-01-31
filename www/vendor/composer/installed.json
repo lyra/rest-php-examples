@@ -1,0 +1,46 @@
+[
+    {
+        "name": "lyranetwork/krypton-php-sdk",
+        "version": "3.0.4",
+        "version_normalized": "3.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/LyraNetwork/krypton-php-sdk.git",
+            "reference": "dedf2cc590639478480c55e15bc2b20dc23484d7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/dedf2cc590639478480c55e15bc2b20dc23484d7",
+            "reference": "dedf2cc590639478480c55e15bc2b20dc23484d7",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-json": "*",
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.1.*"
+        },
+        "time": "2017-01-31 11:55:45",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Lyra Network PHP SDK",
+        "keywords": [
+            "api",
+            "creditcard",
+            "lyra network",
+            "payment",
+            "sdk"
+        ]
+    }
+]
