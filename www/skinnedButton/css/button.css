@@ -1,5 +1,5 @@
 
-button:focus {outline:0;}
+.kr-payment-button button:focus {outline:0;}
 
 .kr-embedded {
   margin-right:auto;
@@ -9,18 +9,11 @@ button:focus {outline:0;}
   max-width: 225px;
 }
 
-.row-no-gutter {
+.kr-row-no-gutter {
   padding-left:0!important;
   padding-right:0!important;
   margin-right:0!important;
   padding-left:0!important;
-}
-
-.no-gutter {
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
 }
 
 .kr-payment-button-wrap {

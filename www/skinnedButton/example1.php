@@ -9,8 +9,8 @@
 /**
  * I initialize the PHP SDK
  */
-require dirname(__DIR__, 1) . '/vendor/autoload.php';
-require dirname(__DIR__, 1) . '/keys.php';
+require_once dirname(__DIR__, 1) . '/vendor/autoload.php';
+require_once dirname(__DIR__, 1) . '/keys.php';
 
 /** 
  * Initialize the SDK 
@@ -37,7 +37,7 @@ if ($response['status'] != 'SUCCESS') {
 /* everything is fine, I extract the formToken */
 $formToken = $response["answer"]["formToken"];
 
-print "newly generated formToken is $formToken <br>\n";
+print "newly generated formToken is " . $formToken . " <br>\n";
 
 ?>
 <!-- dots loader style from https://martinwolf.org/blog/2015/01/pure-css-savingloading-dots-animation-->
@@ -50,7 +50,7 @@ print "newly generated formToken is $formToken <br>\n";
     <div class="kr-expiry"></div>
     <div class="kr-security-code"></div>
 
-    <div class="row-no-gutter">
+    <div class="kr-row-no-gutter">
         <div class="kr-payment-button-wrap">
             <button class="kr-payment-button kr-text-animated">
                 <span class="regular-label">Pay now!</span>
@@ -83,22 +83,22 @@ print "newly generated formToken is $formToken <br>\n";
 <!-- listen events to show and hide the dots loading -->
 <script language="javascript">
     KR.$(document).ready(function() {
-        var krLoading = KR.$(".waiting-animation");
-        var spanButton = KR.$(".regular-label");
-        var krError = KR.$(".kr-form-error");
+        var $krLoading = KR.$(".waiting-animation");
+        var $spanButton = KR.$(".regular-label");
+        var $krError = KR.$(".kr-form-error");
 
         // shows loading when the payment starts
         KR.event.handler.listen("paymentStart", function(error) {
-            spanButton.hide();
-            // krLoading.show();
-            krLoading.css('display', 'inline-block');
-            krError.hide();
+            $spanButton.hide();
+            // $krLoading.show();
+            $krLoading.css('display', 'inline-block');
+            $krError.hide();
         });
         // hides loading if the payment fails
         KR.event.handler.listen("fireError", function(error) {
-            spanButton.show();
-            krLoading.hide();
-            krError.show();
+            $spanButton.show();
+            $krLoading.hide();
+            $krError.show();
         });
     });
 

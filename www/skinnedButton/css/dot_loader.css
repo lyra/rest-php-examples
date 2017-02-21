@@ -1,4 +1,4 @@
-@-webkit-keyframes fx {
+@-webkit-keyframes kr-fx {
   50% {
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -9,7 +9,7 @@
   }
 }
 
-@keyframes fx {
+@keyframes kr-fx {
   50% {
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -55,16 +55,16 @@
   margin: 0 5px;
   -webkit-transform: scale(0);
           transform: scale(0);
-  -webkit-animation: fx 1000ms ease infinite 0ms;
-          animation: fx 1000ms ease infinite 0ms;
+  -webkit-animation: kr-fx 1000ms ease infinite 0ms;
+          animation: kr-fx 1000ms ease infinite 0ms;
 }
 .dot:nth-child(2) {
-  -webkit-animation: fx 1000ms ease infinite 300ms;
-          animation: fx 1000ms ease infinite 300ms;
+  -webkit-animation: kr-fx 1000ms ease infinite 300ms;
+          animation: kr-fx 1000ms ease infinite 300ms;
 }
 .dot:nth-child(3) {
-  -webkit-animation: fx 1000ms ease infinite 600ms;
-          animation: fx 1000ms ease infinite 600ms;
+  -webkit-animation: kr-fx 1000ms ease infinite 600ms;
+          animation: kr-fx 1000ms ease infinite 600ms;
 }
 
 
