@@ -9,8 +9,8 @@
 /**
  * I initialize the PHP SDK
  */
-require __DIR__ . '/vendor/autoload.php';
-require __DIR__ . '/keys.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/keys.php';
 
 /** 
  * Initialize the SDK 

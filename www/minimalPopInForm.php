@@ -9,8 +9,8 @@
 /**
  * I initialize the PHP SDK
  */
-require __DIR__ . '/vendor/autoload.php';
-require __DIR__ . '/keys.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/keys.php';
 
 /** 
  * Initialize the SDK 
@@ -37,7 +37,7 @@ if ($response['status'] != 'SUCCESS') {
 /* everything is fine, I extract the formToken */
 $formToken = $response["answer"]["formToken"];
 
-print "newly generated formToken is $formToken <br>\n";
+print "newly generated formToken is " . $formToken . " <br>\n";
 
 ?>
 

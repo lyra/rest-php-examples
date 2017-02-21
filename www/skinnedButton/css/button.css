@@ -1,5 +1,5 @@
 
-.kr-payment-button button:focus {outline:0;}
+.kr-payment-button {outline:none;}
 
 .kr-embedded {
   margin-right:auto;
