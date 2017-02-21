@@ -1,0 +1,7 @@
+krypton_sdk:
+  build: .
+  container_name:  krypton-sdk
+  volumes:
+    - ./:/var/www/html/
+  ports:
+    - 6981:80

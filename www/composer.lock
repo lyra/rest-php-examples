@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a312925e953c8dc26e92d74eff87fa9",
-    "content-hash": "bc587edc9c869e5be471008925fbbd3f",
+    "hash": "490863eeb02b1a5c5d0cdc76e212257f",
+    "content-hash": "a7faf931cfefe9e08cb644647b56a9da",
     "packages": [
         {
             "name": "lyranetwork/krypton-php-sdk",
@@ -54,7 +54,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.3"

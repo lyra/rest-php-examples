@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite6b4ea2903eeb587890cc9e93de25680
+class ComposerStaticInit66ccf4a4ee6c6fb2c858ec4948c3760e
 {
     public static $fallbackDirsPsr4 = array (
         0 => __DIR__ . '/..' . '/lyranetwork/krypton-php-sdk/src',
@@ -23,8 +23,8 @@ class ComposerStaticInite6b4ea2903eeb587890cc9e93de25680
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->fallbackDirsPsr4 = ComposerStaticInite6b4ea2903eeb587890cc9e93de25680::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInite6b4ea2903eeb587890cc9e93de25680::$prefixesPsr0;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit66ccf4a4ee6c6fb2c858ec4948c3760e::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit66ccf4a4ee6c6fb2c858ec4948c3760e::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
