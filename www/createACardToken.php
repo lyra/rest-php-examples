@@ -56,12 +56,12 @@ print "newly generated formToken is " . $formToken . " <br>\n";
 
     <div class="kr-form-error"></div>
 
-    <button class="kr-payment-button kr-text-animated">Pay now!</button>
+    <button class="kr-payment-button kr-apply-theme">Pay now!</button>
 </div>
 
 <!-- Javascript library. Should be loaded after the payment form -->
 <script src="<?php echo $client->getEndPoint();?>/static/js/krypton-client/V3/stable/kr.min.js?formToken=<?php echo $formToken;?>"
     kr-public-key="<?php echo $client->getPublicKey();?>"
     kr-post-url="paid-register.php"
-    kr-theme="icons-1">
+    kr-theme="icons-2">
 </script>
