@@ -59,7 +59,7 @@ docker-compose up -d
 
 Install deps
 ```sh
-docker exec -ti krypton-sdk php composer.phar install
+docker exec -ti krypton-sdk composer install
 ```
 
 and run the test suite with:

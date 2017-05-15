@@ -1,5 +1,9 @@
 # Changelog
 
+### V3.0.6 2017-05-15
+
+- add setUsername and setPassword methods
+
 ### V3.0.4 2017-01-31
 
 - Adding endpoint support

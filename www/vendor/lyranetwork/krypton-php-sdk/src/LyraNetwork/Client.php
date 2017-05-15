@@ -6,9 +6,8 @@ use LyraNetwork\Constants;
 
 class Client
 {
-    private $_login = null;
+    private $_username = null;
     private $_password = null;
-    private $_privateKey = null;
     private $_publicKey = null;
     private $_connectionTimeout = 45;
     private $_timeout = 45;
@@ -35,9 +34,16 @@ class Client
             throw new LyraNetworkException("invalid private key");
         }
 
-        $this->_privateKey = $privateKey;
-        $this->_login = $auth[0];
+        $this->_username = $auth[0];
         $this->_password = $auth[1];
+    }
+
+    public function setUsername($username) {
+        $this->_username = $username;
+    }
+
+    public function setPassword($password) {
+        $this->_password = $password;
     }
 
     public function setPublicKey($publicKey) {
@@ -60,8 +66,12 @@ class Client
 
     public function post($target, $array)
     {
-        if (!$this->_privateKey) {
-            throw new LyraNetworkException("private key not defined in the SDK");
+        if (!$this->_username) {
+            throw new LyraNetworkException("username is not defined in the SDK");
+        }
+
+        if (!$this->_password) {
+            throw new LyraNetworkException("password is not defined in the SDK");
         }
 
         if (!$this->_endpoint) {
@@ -86,6 +96,7 @@ class Client
 
     public function postWithCurl($target, $array)
     {
+        $authString = $this->_username . ":" . $this->_password;
         $url = $this->getUrlFromTarget($target);
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_HEADER, false);
@@ -93,7 +104,7 @@ class Client
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_USERAGENT, 'Krypton PHP SDK ' . Constants::SDK_VERSION);
-        curl_setopt($curl, CURLOPT_USERPWD, $this->_privateKey);
+        curl_setopt($curl, CURLOPT_USERPWD, $authString);
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($array));
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT , $this->_connectionTimeout);
@@ -124,18 +135,17 @@ class Client
             throw new LyraNetworkException("Error: call to URL $url failed with status $status, response $raw_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
         }
 
-        curl_close($curl);
-
         return $response;
     }
 
     public function postWithFileGetContents($target, $array)
     {
         $url = $this->getUrlFromTarget($target);
+        $authString = $this->_username . ":" . $this->_password;
 
         $http = array(
             'method'        => 'POST',
-            'header'        => 'Authorization: Basic ' . base64_encode($this->_privateKey) . "\r\n".
+            'header'        => 'Authorization: Basic ' . base64_encode($authString) . "\r\n".
                               'Content-Type: application/json',
             'content'       => json_encode($array),
             'user_agent'    => 'Krypton PHP SDK fallback ' . Constants::SDK_VERSION,

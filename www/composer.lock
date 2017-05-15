@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "490863eeb02b1a5c5d0cdc76e212257f",
-    "content-hash": "a7faf931cfefe9e08cb644647b56a9da",
+    "hash": "d46a9f3fed3ebe49604b23db0ba36d03",
+    "content-hash": "b7d85c4334c79a74f72e3b198cf517cf",
     "packages": [
         {
             "name": "lyranetwork/krypton-php-sdk",
-            "version": "3.0.4",
+            "version": "3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LyraNetwork/krypton-php-sdk.git",
-                "reference": "dedf2cc590639478480c55e15bc2b20dc23484d7"
+                "reference": "d860ee708a42668f7259e5fc51fa9b2d5c5701b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/dedf2cc590639478480c55e15bc2b20dc23484d7",
-                "reference": "dedf2cc590639478480c55e15bc2b20dc23484d7",
+                "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/d860ee708a42668f7259e5fc51fa9b2d5c5701b8",
+                "reference": "d860ee708a42668f7259e5fc51fa9b2d5c5701b8",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "payment",
                 "sdk"
             ],
-            "time": "2017-01-31 11:55:45"
+            "time": "2017-05-15 13:16:36"
         }
     ],
     "packages-dev": [],
