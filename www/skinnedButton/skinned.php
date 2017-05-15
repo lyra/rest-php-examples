@@ -17,7 +17,8 @@ require_once dirname(__DIR__) . '/keys.php';
  * Please update your keys in keys.php
  */
 $client = new LyraNetwork\Client();  
-$client->setPrivateKey($_privateKey);       /* key defined in keys.php file */
+$client->setUsername($_username);           /* username defined in keys.php file */
+$client->setPassword($_password);           /* password defined in keys.php file */
 $client->setPublicKey($_publicKey);         /* key defined in keys.php file */
 $client->setEndpoint($_endpoint);           /* REST API endpoint defined in keys.php file */
 

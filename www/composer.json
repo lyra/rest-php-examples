@@ -4,7 +4,7 @@
     "keywords": ["LyraNetwork", "php", "sdk", "creditcard", "payment"],
     "require": {
         "php": ">=5.3.3",
-        "lyranetwork/krypton-php-sdk": "3.0.4"
+        "lyranetwork/krypton-php-sdk": "~3.0"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
