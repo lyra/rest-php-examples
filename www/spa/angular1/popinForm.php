@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
 /**
-* Embbeded Form angularJS example
+* Popin Form angularJS example
 * 
 * To run the example, go to 
 * https://github.com/LyraNetwork/krypton-php-examples
@@ -12,14 +12,14 @@
 */
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../keys.php';
-
 ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AngularJS Embedded Form</title>
+    <title>AngularJS Popin Form</title>
     <script src="https://krypton.purebilling.io/V3.1/stable/kr-payment-form.min.js"
         kr-public-key="<?php echo $_publicKey;?>"
         kr-post-url="paid.php"
@@ -34,12 +34,14 @@ require_once __DIR__ . '/../../keys.php';
 </head>
 <body ng-app="paymentFormApp">
     <div ng-controller="FormController">
+        <!-- Create form data -->
         <input ng-model="amount" name="amount" type="number" step="0.01"/>
         <select ng-model="currency" name="currency">
             <option value="EUR">EUR</option>
             <option value="USD">USD</option>
         </select>
         <button ng-click="createForm()">Create form</button>
+        <!-- Popin form -->
         <div class="form" ng-if="formToken">
             <div class="kr-checkout"></div>
             <p ng-bind="postData"></p>
@@ -70,7 +72,7 @@ require_once __DIR__ . '/../../keys.php';
                     },
                     url: `/createToken.php`,
                     success: function(response) {
-                        // If the response is successful, I set the formToken variable and 
+                        // If the response is successful, I set the formToken variable 
                         $scope.formToken = response;
                         $scope.errorMessage = '';
 
@@ -95,6 +97,7 @@ require_once __DIR__ . '/../../keys.php';
                                         * postData to show the data on '<p ng-bind="postData"></p>'.
                                         */
                                         $scope.postData = JSON.stringify(paymentStore.json);
+                                        $scope.errorMessage = '';
 
                                         $timeout(function() {
                                             $scope.$apply();

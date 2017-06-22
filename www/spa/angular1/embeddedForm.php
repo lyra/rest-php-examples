@@ -12,8 +12,8 @@
 */
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../keys.php';
-
 ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,6 +53,7 @@ require_once __DIR__ . '/../../keys.php';
         <p ng-bind="errorMessage" style="color:red"></p>
     </div>
 
+    <!-- AngularJS app -->
     <script type="text/javascript">
         // I declare the new module (ng-app)
         var paymentFormApp = angular.module('paymentFormApp', []);
@@ -76,7 +77,7 @@ require_once __DIR__ . '/../../keys.php';
                     },
                     url: `/createToken.php`,
                     success: function(response) {
-                        // If the response is successful, I set the formToken variable and 
+                        // If the response is successful, I set the formToken variable 
                         $scope.formToken = response;
                         $scope.errorMessage = '';
 
@@ -101,6 +102,7 @@ require_once __DIR__ . '/../../keys.php';
                                         * postData to show the data on '<p ng-bind="postData"></p>'.
                                         */
                                         $scope.postData = JSON.stringify(paymentStore.json);
+                                        $scope.errorMessage = '';
 
                                         $timeout(function() {
                                             $scope.$apply();
