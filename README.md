@@ -6,15 +6,12 @@ Lyra Network REST API code examples using [our PHP SDK](https://github.com/LyraN
 
 Available examples are:
 
-| php file                | Description                                   |
-|-------------------------|-----------------------------------------------|
-| minimalEmbeddedForm.php | Embedded payment form example                 |
-| minimalPopInForm.php    | PopIn payment form example                    |
-| SDKTest.php             | How to initialize the SDK                     |
-| paid.php                | Landing page example if a payment is accepted |
-| ipn.php                 | Instant Payment Notification script example   |
-| createACardToken.php    | How-to create a card token for later use      |
-| chargeAToken.php        | How-to use a card token                       |
+| php file                   | Description                                         |
+|----------------------------|-----------------------------------------------------|
+| minimalEmbeddedForm.php    | Embedded payment form example                       |
+| SDKTest.php                | How to initialize the SDK                           |
+| paid.php                   | Landing page example if a payment is accepted       |
+| minimalEmbeddedForm.V3.php | Embedded payment form example (V3.0 legacy version) |
 
 
 ## Try it with docker
@@ -30,22 +27,15 @@ Start the container:
 
 and go to http://localhost:6980
 
-## Try it using apache
+## Try it using your favorite web-server
 
 Copy src/ directory content to your PHP server, and go to *index.html* page. 
 
-## Simulate IPN Call
+## Previous version examples (V3.0)
 
-To simulate Instant Payment Notification call with CURL, do:
+Previous legacy version examples:
 
-    curl http://localhost:6980/ipn.php \
-        -X POST \
-        -H 'Content-type: application/json' \
-        -d '{ "orderId": "7d25c5e45cf74198b9f86ad656b3daf3",
-            "_type": "V3/Charge/TransactionIPN",
-            "shopId": "69876357",
-            "transactions": [
-                {"id": "5cd1b2538c4b4fb3939ea75310b3210f"}
-            ]
-            }'
-
+| php file                      | Description                                         |
+|-------------------------------|-----------------------------------------------------|
+| V3/minimalEmbeddedForm.V3.php | Embedded payment form example (V3.0 legacy version) |
+| V3/paid.V3.php                | Landing page example if a payment is accepted       |

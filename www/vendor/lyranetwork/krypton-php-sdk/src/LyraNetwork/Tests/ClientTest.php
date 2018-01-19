@@ -10,6 +10,14 @@ use LyraNetwork\Constants;
  */
 class ClientTest extends PHPUnit_Framework_TestCase
 {
+    private function fakePostData()
+    {
+        $_POST['kr-hash'] = "6ad18cd5bd4cf8b2a265c283c3a829dd58fea0db032e3f73ae670f74e1f4c7dc";
+        $_POST['kr-hash-algorithm'] = "sha256";
+        $_POST['kr-answer-type'] = "V3.1\/BrowserRequest";
+        $_POST['kr-answer'] = '{"shopId":"33148340","orderCycle":"CLOSED","orderStatus":"PAID","orderDetails":{"orderTotalAmount":399,"orderCurrency":"EUR","mode":"TEST","orderId":"446cedc74e404af2ace4ecb4c64513fa","_type":"V3.1/OrderDetails"},"transactions":[{"uuid":"9b7ad826931542198131fd939cf88816","status":"PAID","detailedStatus":"AUTHORISED","_type":"V3.1/BrowserRequestTransaction"}],"serverDate":"2017-11-09T15:33:49+00:00","_type":"V3.1/BrowserRequest"}';
+    }
+
     /**
      * ./vendor/bin/phpunit --filter testClientValidCall src/LyraNetwork/Tests/ClientTest.php
      */
@@ -20,7 +28,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client = new Client();
         $client->setPrivateKey("69876357:testprivatekey_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M");
         $client->setEndpoint("https://secure.payzen.eu");
-        $response = $client->post('Charge/SDKTest', $store);
+        $response = $client->post('V3/Charge/SDKTest', $store);
 
         $this->assertEquals("SUCCESS", $response["status"]);
         $this->assertEquals($store["value"], $response["answer"]["value"]);
@@ -37,7 +45,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client->setUsername("69876357");
         $client->setPassword("testprivatekey_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M");
         $client->setEndpoint("https://secure.payzen.eu");
-        $response = $client->post('Charge/SDKTest', $store);
+        $response = $client->post('V3/Charge/SDKTest', $store);
 
         $this->assertEquals("SUCCESS", $response["status"]);
         $this->assertEquals($store["value"], $response["answer"]["value"]);
@@ -53,7 +61,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client = new Client();
         $client->setPrivateKey("69876357:testprivatekey_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M");
         $client->setEndpoint("https://secure.payzen.eu");
-        $response = $client->postWithFileGetContents('Charge/SDKTest', $store);
+        $response = $client->postWithFileGetContents('V3/Charge/SDKTest', $store);
 
         $this->assertEquals("SUCCESS", $response["status"]);
         $this->assertEquals($store["value"], $response["answer"]["value"]);
@@ -70,7 +78,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client->setUsername("69876357");
         $client->setPassword("testprivatekey_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M");
         $client->setEndpoint("https://secure.payzen.eu");
-        $response = $client->postWithFileGetContents('Charge/SDKTest', $store);
+        $response = $client->postWithFileGetContents('V3/Charge/SDKTest', $store);
 
         $this->assertEquals("SUCCESS", $response["status"]);
         $this->assertEquals($store["value"], $response["answer"]["value"]);
@@ -86,7 +94,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client = new Client();
         $client->setPrivateKey("69876357:testprivatekey_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M");
         $client->setEndpoint("https://secure.payzen.eu//");
-        $response = $client->post('Charge/SDKTest', $store);
+        $response = $client->post('V3/Charge/SDKTest', $store);
 
         $this->assertEquals("SUCCESS", $response["status"]);
         $this->assertEquals($store["value"], $response["answer"]["value"]);
@@ -103,10 +111,10 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client->setPrivateKey("69876357:testprivatekey_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M");
 
         $client->setEndpoint("https://secure.payzen.eu");
-        $this->assertEquals("https://secure.payzen.eu/api-payment/V3/Charge/Get", $client->getUrlFromTarget("Charge/Get"));
+        $this->assertEquals("https://secure.payzen.eu/api-payment/V3/Charge/Get", $client->getUrlFromTarget("V3/Charge/Get"));
 
         $client->setEndpoint("https://secure.payzen.eu/");
-        $this->assertEquals("https://secure.payzen.eu/api-payment/V3/Charge/Get", $client->getUrlFromTarget("Charge/Get"));
+        $this->assertEquals("https://secure.payzen.eu/api-payment/V3/Charge/Get", $client->getUrlFromTarget("V3/Charge/Get"));
     }
 
     /**
@@ -177,7 +185,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client = new Client();
         $client->setPrivateKey("69876357:testprivatekey_FAKE");
         $client->setEndpoint("https://secure.payzen.eu");
-        $response = $client->post('Charge/SDKTest', $store);
+        $response = $client->post('V3/Charge/SDKTest', $store);
 
         $this->assertEquals("ERROR", $response["status"]);
         $this->assertEquals("INT_005", $response["answer"]["errorCode"]);
@@ -193,7 +201,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client = new Client();
         $client->setPrivateKey("69876357:testprivatekey_FAKE");
         $client->setEndpoint("https://secure.payzen.eu");
-        $response = $client->postWithFileGetContents('Charge/SDKTest', $store);
+        $response = $client->postWithFileGetContents('V3/Charge/SDKTest', $store);
 
         $this->assertEquals("ERROR", $response["status"]);
         $this->assertEquals("INT_005", $response["answer"]["errorCode"]);
@@ -212,6 +220,11 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Constants::SDK_VERSION, $client->getVersion());
         $this->assertEquals("33148340:testpublickey_l83P7WpRK2hoUIcWyFVQsd4Omsz0XbCKYtNKeGbpX6CvS", $client->getPublicKey());
         $this->assertEquals("https://secure.payzen.eu", $client->getEndpoint());
+        $this->assertEquals("https://secure.payzen.eu", $client->getClientEndpoint());
+
+        $client->setClientEndpoint("https://client.payzen.eu");
+        $this->assertEquals("https://secure.payzen.eu", $client->getEndpoint());
+        $this->assertEquals("https://client.payzen.eu", $client->getClientEndpoint());
     }
 
     /**
@@ -228,7 +241,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client->setProxy('fake.host', 1234);
 
         $store = array("value" => "sdk test string value");
-        $response = $client->post('Charge/SDKTest', $store);
+        $response = $client->post('V3/Charge/SDKTest', $store);
     }
 
     /**
@@ -241,9 +254,46 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client->setEndpoint("https://secure.payzen.eu");
 
         $store = "FAKE";
-        $response = $client->post('Charge/SDKTest', $store);
+        $response = $client->post('V3/Charge/SDKTest', $store);
 
         $this->assertEquals("ERROR", $response["status"]);
         $this->assertEquals("INT_002", $response["answer"]["errorCode"]);
+    }
+
+    /**
+     * ./vendor/bin/phpunit --filter testGetParsedFormAnswer src/LyraNetwork/Tests/ClientTest.php
+     */
+    public function testGetParsedFormAnswer()
+    {
+        $client = new Client();
+        $this->fakePostData();
+        $answer = $client->getParsedFormAnswer();
+
+        $this->assertEquals($_POST['kr-hash'], $answer['kr-hash']);
+        $this->assertEquals($_POST['kr-hash-algorithm'], $answer['kr-hash-algorithm']);
+        $this->assertEquals($_POST['kr-answer-type'], $answer['kr-answer-type']);
+
+        $rebuild_string_answer = json_encode($answer['kr-answer']);
+        /* php 5.3.3 does not support JSON_UNESCAPED_SLASHES */
+        $rebuild_string_answer = str_replace('\/', '/', $rebuild_string_answer);
+
+        $this->assertEquals($_POST['kr-answer'], $rebuild_string_answer);
+        $this->assertEquals("array", gettype($answer['kr-answer']));
+    }
+
+    /**
+     * ./vendor/bin/phpunit --filter testCheckHash src/LyraNetwork/Tests/ClientTest.php
+     */
+    public function testCheckHash()
+    {
+        $client = new Client();
+        $this->fakePostData();
+        $this->assertNull($client->getLastCalculatedHash());
+
+        /* not yet implemented */
+        $isValid = $client->checkHash("ktM7bSeTJpclvpm4eEE9N0LIyoxUvsQ9AAYbQI1xQx7Qh");
+
+        $this->assertTrue($isValid);
+        $this->assertNotNull($client->getLastCalculatedHash());
     }
 }

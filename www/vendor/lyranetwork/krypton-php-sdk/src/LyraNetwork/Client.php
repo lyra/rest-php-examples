@@ -14,6 +14,8 @@ class Client
     private $_proxyHost = null;
     private $_proxyPort = null;
     private $_endpoint = null;
+    private $_clientEndpoint = null;
+    private $_lastCalculatedHash = null;
 
     public function getVersion() {
         return Constants::SDK_VERSION;
@@ -23,9 +25,18 @@ class Client
          $this->_endpoint = $endpoint;
     }
 
+    public function setClientEndpoint($clientEndpoint) {
+        $this->_clientEndpoint = $clientEndpoint;
+    }
+
     public function getEndpoint() {
          return $this->_endpoint;
     }
+
+    public function getClientEndpoint() {
+        if ($this->_clientEndpoint) return $this->_clientEndpoint;
+        return $this->_endpoint;
+   }
 
     public function setPrivateKey($privateKey) {
         $auth = explode(':', $privateKey);
@@ -87,7 +98,7 @@ class Client
 
     public function getUrlFromTarget($target)
     {
-        $url = $this->_endpoint . "/api-payment/V3/" . $target;
+        $url = $this->_endpoint . "/api-payment/" . $target;
         $url = preg_replace('/([^:])(\/{2,})/', '$1/', $url); 
         
         return $url;
@@ -161,15 +172,66 @@ class Client
         $raw_response = file_get_contents($url, false, $context);
 
         if (!$raw_response) {
-            throw new Exception("Error: call to URL $url failed.");
+            throw new LyraNetworkException("Error: call to URL $url failed.");
         }
 
         $response = json_decode($raw_response, true);
 
         if (!$response) {
-            throw new Exception("Error: call to URL $url failed.");
+            throw new LyraNetworkException("Error: call to URL $url failed.");
         }
 
         return $response;
+    }
+
+    /**
+     * Retrieve payment form answer from POST data
+     */
+    public function getParsedFormAnswer()
+    {
+        if (!array_key_exists("kr-hash", $_POST)) throw new LyraNetworkException("kr-hash not found in POST parameters");
+        if (!array_key_exists("kr-hash-algorithm", $_POST)) throw new LyraNetworkException("kr-hash-algorithm not found in POST parameters");
+        if (!array_key_exists("kr-answer-type", $_POST)) throw new LyraNetworkException("kr-answer-type not found in POST parameters");
+        if (!array_key_exists("kr-answer", $_POST)) throw new LyraNetworkException("kr-answer not found in POST parameters");
+
+        $answer = array();
+        $answer['kr-hash'] = $_POST['kr-hash'];
+        $answer['kr-hash-algorithm'] = $_POST['kr-hash-algorithm'];
+        $answer['kr-answer-type'] = $_POST['kr-answer-type'];
+
+        try {
+            $answer['kr-answer'] = json_decode($_POST['kr-answer'], true);
+        } catch(Exception $e) {
+            throw new LyraNetworkException("kr-answer JSON decoding failed");
+        }
+        
+        return $answer;
+    }
+
+    /**
+     * retrieve the last calculated hash
+     */
+    public function getLastCalculatedHash()
+    {
+        return $this->_lastCalculatedHash;
+    }
+
+    /**
+     * check kr-answer object signature
+     */
+    public function checkHash($hashKey)
+    {
+        /* check if the hash algorithm is supported */
+        if ($_POST['kr-hash-algorithm'] != "sha256") {
+            throw new LyraNetworkException("hash algorithm not supported:" . $_POST['kr-hash-algorithm']);
+        }
+
+        /* calculating the hash on our side */
+        $stringToHash = $_POST['kr-answer'] . "+" . $hashKey;
+        $calculatedHash = hash($_POST['kr-hash-algorithm'], $stringToHash);
+        $this->_lastCalculatedHash = $calculatedHash;
+
+        /* return true if calculated hash and sent hash are the same */
+        return ($calculatedHash == $_POST['kr-hash']);
     }
 }

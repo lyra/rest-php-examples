@@ -4,30 +4,32 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d46a9f3fed3ebe49604b23db0ba36d03",
-    "content-hash": "b7d85c4334c79a74f72e3b198cf517cf",
+    "hash": "c3eaa3c778564ff1af5b5fb83c6fcc30",
+    "content-hash": "39c4b9eaf446a406bbebcd7cce268048",
     "packages": [
         {
             "name": "lyranetwork/krypton-php-sdk",
-            "version": "3.0.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LyraNetwork/krypton-php-sdk.git",
-                "reference": "d860ee708a42668f7259e5fc51fa9b2d5c5701b8"
+                "reference": "7577be52dd10fbf60a2f9a55d6688664aa2f8f8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/d860ee708a42668f7259e5fc51fa9b2d5c5701b8",
-                "reference": "d860ee708a42668f7259e5fc51fa9b2d5c5701b8",
+                "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/7577be52dd10fbf60a2f9a55d6688664aa2f8f8c",
+                "reference": "7577be52dd10fbf60a2f9a55d6688664aa2f8f8c",
                 "shasum": ""
             },
             "require": {
-                "ext-curl": "*",
                 "ext-json": "*",
                 "php": ">=5.3.3"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.1.*"
+            },
+            "suggest": {
+                "ext-curl": "*"
             },
             "type": "library",
             "autoload": {
@@ -47,13 +49,15 @@
                 "payment",
                 "sdk"
             ],
-            "time": "2017-05-15 13:16:36"
+            "time": "2018-01-19 14:30:27"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "lyranetwork/krypton-php-sdk": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

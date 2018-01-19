@@ -5,25 +5,22 @@
  * To start the PHP server, go to 
  * https://github.com/LyraNetwork/krypton-php-examples
  *
- * to simulate an IPN call with CURL
- * 
-   curl http://localhost:6980 \
-      -X POST \
-      -H 'Content-type: application/json' \
-      -d '{ "orderId": "7d25c5e45cf74198b9f86ad656b3daf3",
-            "_type": "V3/Charge/TransactionIPN",
-            "shopId": "69876357",
-            "transactions": [
-              {"id": "5cd1b2538c4b4fb3939ea75310b3210f"}
-            ]
-           }'
  */
+
+
 
 /**
  * I initialize the PHP SDK
  */
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/keys.php';
+require_once __DIR__ . '/helpers.php';
+
+/**
+ * to simulate an IPN call with CURL, uncomment the following code:
+ * 
+$_POST = getIPNSimulatedPOSTData();
+ */
 
 /** 
  * Initialize the SDK 
@@ -35,32 +32,21 @@ $client->setPassword($_password);           /* password defined in keys.php file
 $client->setPublicKey($_publicKey);         /* key defined in keys.php file */
 $client->setEndpoint($_endpoint);           /* REST API endpoint defined in keys.php file */
 
-/* Get Raw JSON data from the IPN and decode it */
-$rawJson = file_get_contents('php://input');
-$json = json_decode($rawJson, true);
+/* Check the signature using password */
+$hashKey = $_sha256Key; /* defined in keys.php file */
 
-/* No data ? there is something wrong */
-if (is_null($json)) {
-    throw new Exception("invalid or empty json data!");
+if (!$client->checkHash($hashKey)) {
+    //something wrong, probably a fraud ....
+    signature_error($formAnswer['kr-answer']['transactions'][0]['uuid'], $hashKey, 
+                    $client->getLastCalculatedHash(), $_POST['kr-hash']);
+    throw new Exception("invalid signature");
 }
+
+/* Retrieve the IPN content */
+$formAnswer = $client->getParsedFormAnswer();
 
 /* Retrieve the billingTransaction id from the IPN data */
-$billingTransactionId = $json["transactions"][0]["id"];
-
-/** 
- * We check the billingTransaction status using Charge/Get web-service
- */
-$store = array("id" => $billingTransactionId);
-$response = $client->post('Charge/Get', $store);
-
-/* Check if there is no errors */
-if ($response['status'] != 'SUCCESS') {
-    $error = $response['answer'];
-    throw new Exception("error " . $error['errorCode'] . ": " . $error['errorMessage'] );
-}
-
-/* Now I have the billingTransaction object */
-$billingTransaction = $response['answer'];
+$transaction = $formAnswer["transactions"][0];
 
 /* I update my database if needed */
 /* Add here your custom code */ 

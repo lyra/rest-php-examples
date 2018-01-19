@@ -20,9 +20,9 @@ require_once __DIR__ . '/../../keys.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AngularJS Popin Form</title>
-    <script src="https://krypton.purebilling.io/V3.1/stable/kr-payment-form.min.js"
+    <script src="<?php $client->getEndpoint()?>/V3.1/stable/kr-payment-form.min.js"
         kr-public-key="<?php echo $_publicKey;?>"
-        kr-post-url="paid.php"
+        kr-post-url-success="paid.php"
         kr-shop-name="My company"
         kr-button-label="Pay now!"
         kr-order-summary="super bike">
@@ -40,7 +40,7 @@ require_once __DIR__ . '/../../keys.php';
             <option value="EUR">EUR</option>
             <option value="USD">USD</option>
         </select>
-        <button ng-click="createForm()">Create form</button>
+        <button ng-click="createForm()">Create or update form</button>
         <!-- Popin form -->
         <div class="form" ng-if="formToken">
             <div class="kr-checkout"></div>

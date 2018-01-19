@@ -5,8 +5,10 @@
     "keywords": ["lyra network", "api", "sdk", "creditcard", "payment"],
     "require": {
         "php": ">=5.3.3",
-        "ext-curl": "*",
         "ext-json": "*"
+    },
+    "suggest": {
+        "ext-curl": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.*"

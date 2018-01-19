@@ -1,7 +1,6 @@
 <?php 
 /**
- * Charge a payment method using a previously
- * generated token
+ * Payment done landing page example
  * 
  * To run the example, go to 
  * https://github.com/LyraNetwork/krypton-php-examples
@@ -12,10 +11,11 @@
  */
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/keys.php';
+require_once __DIR__ . '/helpers.php';
 
 /** 
  * Initialize the SDK 
- * Please update your keys in keys.php
+ * Please !!UPDATE!! your keys in keys.php
  */
 $client = new LyraNetwork\Client();  
 $client->setUsername($_username);           /* username defined in keys.php file */
@@ -23,33 +23,34 @@ $client->setPassword($_password);           /* password defined in keys.php file
 $client->setPublicKey($_publicKey);         /* key defined in keys.php file */
 $client->setEndpoint($_endpoint);           /* REST API endpoint defined in keys.php file */
 
-
-/* Retrieve the token from GET parameters */
-if (!array_key_exists('token', $_GET)) {
-    print 'There is no token defined, start with <a href="createACardToken.php">createACardToken.php</a>';
-    die();
+/* No POST data ? paid page in not called after a payment form */
+if (empty($_GET)) {
+    throw new Exception("no post data received!");
 }
-$token = $_GET["token"];
 
-/**
- * I create a formToken with the payment method token
+/** 
+ * To check if the payment has been paid in a secure way
+ * I retrieve the billingTransaction values from V3.1/Transaction/Get web-service
  */
-$store = array("amount" => 150, "currency" => "EUR", "paymentMethod" => $token);
-$response = $client->post("Charge/CreatePayment", $store);
+$store = array("id" => $_GET["kr_transaction_uuid"]);
+$response = $client->post('V3.1/Transaction/Get', $store);
 
-/* I check if there is some errors */
+/* Check if there is no errors */
 if ($response['status'] != 'SUCCESS') {
-    /* an error occurs, I throw an exception */
+    display_error($response);
     $error = $response['answer'];
     throw new Exception("error " . $error['errorCode'] . ": " . $error['errorMessage'] );
 }
 
-/* 
- * everything is fine 
- * createPayment returns directly a billingTransaction object
- */
-$billingTransaction = $response["answer"];
+/* Now I have the billingTransaction object */
+$billingTransaction = $response['answer'];
 
+/* I check if it's really paid */
+if ($billingTransaction['status'] != 'PAID') {
+     $title = "Transaction not paid !";
+} else {
+    $title = "Transaction paid !";
+}
 ?>
 
 <html>
@@ -62,13 +63,25 @@ $billingTransaction = $response["answer"];
 
 </head>
 <body>
-    <h1>Transaction paid using a payment method token !</h1>
+    <h1><?php echo $title;?></h1>
 <div class="container">
 
 <h2>billingTransaction object is:</h2>
 <pre><code class="json"><?php print json_encode($billingTransaction, JSON_PRETTY_PRINT) ?></code></pre>
 
-Note that paymentMethodSource is set to TOKEN.
+<h2>To simulate IPN call with CURL, execute in your terminal:</h2>
+<pre><code class="json">
+curl http://localhost:6980/ipn.php \
+     -X POST \
+     -H 'Content-type: application/json' \
+     -d '{ "orderId": "<?echo $billingTransaction['orderId'];?>",
+           "_type": "V3.1/IPNRequest",
+           "shopId": "<?echo $billingTransaction['shopId'];?>",
+           "transactions": [
+             {"id": "<?echo $billingTransaction['id'];?>"}
+           ]
+          }'
+</code></pre>
 
 </div>
 <script type="text/javascript">

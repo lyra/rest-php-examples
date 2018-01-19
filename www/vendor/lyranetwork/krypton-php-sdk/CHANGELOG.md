@@ -1,5 +1,23 @@
 # Changelog
 
+### 3.1.1 2018-01-19
+
+- Change Expcetion to LyraNetworkException in client.php
+
+### 3.1.0 2017-11-21
+
+New SDK version for the new 3.1 web-services.
+Still compatible with 3.0 doing minor changes.
+
+It's a release candidate.
+
+- version is now defined in the web-service name (use V3/Charge/SDKTest instead of Charge/SDKTest)
+- add $client->checkHash($hashKey) method to check POST data answer signature
+- add $client->getLastCalculatedHash() get the last calculated hash by checkHash()
+- add $client->getClientEndPoint() to allow to test a javascript client on a different server
+- add $client->getParsedAnswer() helper to get POST data easily 
+- composer ext-curl deps moved to suggest, refs #2
+
 ### V3.0.6 2017-05-15
 
 - add setUsername and setPassword methods

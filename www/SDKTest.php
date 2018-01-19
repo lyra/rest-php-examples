@@ -11,6 +11,7 @@
  */
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/keys.php';
+require_once __DIR__ . '/helpers.php';
 
 /** 
  * Initialize the SDK 
@@ -26,11 +27,12 @@ $client->setEndpoint($_endpoint);           /* REST API endpoint defined in keys
  * I send test data
  */
 $store = array("value" => "my testing value");
-$response = $client->post("Charge/SDKTest", $store);
+$response = $client->post("V3.1/Charge/SDKTest", $store);
 ?>
 
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/dracula.min.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="skinned/assets/paid.css">
