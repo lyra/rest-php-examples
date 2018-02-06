@@ -1,29 +1,21 @@
 <?php
 /**
- * Key file
- * Define here your Keys
+ * Get the client
  */
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
- * REST API server to server Basic http authentication credentials
- * used for REST API server to server calls
+ * Define configuration
  */
-$_username = "69876357";
-$_password = "testprivatekey_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M";
 
+/* Username, password and endpoint used for server to server web-service calls */
+LyraNetwork\Client::setDefaultUsername("69876357");
+LyraNetwork\Client::setDefaultPassword("testpassword_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M");
+LyraNetwork\Client::setDefaultEndpoint("https://secure.payzen.eu");
 
-/**
- * REST API Public key
- * used for javascript client authentication
- */
-$_publicKey = "69876357:testpublickey_DEMOPUBLICKEY95me92597fd28tGD4r5"; 
+/* publicKey and used by the javascript client */
+LyraNetwork\Client::setDefaultPublicKey("69876357:testpublickey_DEMOPUBLICKEY95me92597fd28tGD4r5");
 
-/**
- * REST API SHA256 key
- */
-$_sha256Key = "38453613e7f44dc58732bad3dca2bca3";
+/* SHA256 key */
+LyraNetwork\Client::setDefaultSHA256Key("38453613e7f44dc58732bad3dca2bca3");
 
-/**
- * REST API endpoint
- */
-$_endpoint = "https://secure.payzen.eu";

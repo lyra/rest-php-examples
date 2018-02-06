@@ -15,13 +15,9 @@ require_once __DIR__ . '/helpers.php';
 
 /** 
  * Initialize the SDK 
- * Please update your keys in keys.php
+ * see keys.php
  */
-$client = new LyraNetwork\Client();         /* Create the client SDK */
-$client->setUsername($_username);           /* username defined in keys.php file */
-$client->setPassword($_password);           /* password defined in keys.php file */
-$client->setPublicKey($_publicKey);         /* key defined in keys.php file */
-$client->setEndpoint($_endpoint);           /* REST API endpoint defined in keys.php file */
+$client = new LyraNetwork\Client();
 
 /**
  * I create a formToken
@@ -44,6 +40,7 @@ if ($response['status'] != 'SUCCESS') {
 
 /* everything is fine, I extract the formToken */
 $formToken = $response["answer"]["formToken"];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,6 +58,7 @@ $formToken = $response["answer"]["formToken"];
   </script>
 
   <!-- theme and plugins. should be loaded after the javascript library -->
+  <!-- not mandatory but helps to have a nice payment form out of the box -->
   <link rel="stylesheet" 
    href="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V3.1/ext/classic-reset.css">
   <script 

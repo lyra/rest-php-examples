@@ -1,4 +1,4 @@
-FROM php:7.1.1-apache
+FROM php:7.2.1-apache
 
 # install unzip
 RUN apt-get update && apt-get install -y \

@@ -18,24 +18,23 @@ require_once __DIR__ . '/helpers.php';
 
 /**
  * to simulate an IPN call with CURL, uncomment the following code:
- * 
-$_POST = getIPNSimulatedPOSTData();
  */
+//$_POST = getIPNSimulatedPOSTData();
 
 /** 
  * Initialize the SDK 
- * Please update your keys in keys.php
+ * see keys.php
  */
 $client = new LyraNetwork\Client();  
-$client->setUsername($_username);           /* username defined in keys.php file */
-$client->setPassword($_password);           /* password defined in keys.php file */
-$client->setPublicKey($_publicKey);         /* key defined in keys.php file */
-$client->setEndpoint($_endpoint);           /* REST API endpoint defined in keys.php file */
+
+/* No POST data ? paid page in not called after a payment form */
+if (empty($_POST)) {
+    throw new Exception("no post data received!");
+}
 
 /* Check the signature using password */
-$hashKey = $_sha256Key; /* defined in keys.php file */
 
-if (!$client->checkHash($hashKey)) {
+if (!$client->checkHash()) {
     //something wrong, probably a fraud ....
     signature_error($formAnswer['kr-answer']['transactions'][0]['uuid'], $hashKey, 
                     $client->getLastCalculatedHash(), $_POST['kr-hash']);

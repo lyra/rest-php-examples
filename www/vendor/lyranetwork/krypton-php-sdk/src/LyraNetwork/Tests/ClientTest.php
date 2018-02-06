@@ -212,7 +212,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
      */
     public function testClientConfiguration()
     {
-        $client = new Client("A:B");
+        $client = new Client();
         $client->setPrivateKey("A:B");
         $client->setPublickey("33148340:testpublickey_l83P7WpRK2hoUIcWyFVQsd4Omsz0XbCKYtNKeGbpX6CvS");
         $client->setEndpoint("https://secure.payzen.eu");
@@ -225,6 +225,53 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client->setClientEndpoint("https://client.payzen.eu");
         $this->assertEquals("https://secure.payzen.eu", $client->getEndpoint());
         $this->assertEquals("https://client.payzen.eu", $client->getClientEndpoint());
+    }
+
+    /**
+     * ./vendor/bin/phpunit --filter testDefaultClientConfiguration src/LyraNetwork/Tests/ClientTest.php
+     */
+    public function testDefaultClientConfiguration()
+    {
+        Client::setDefaultUsername("69876357");
+        Client::setDefaultPassword("testpassword_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M");
+        Client::setDefaultPublicKey("69876357:testpublickey_DEMOPUBLICKEY95me92597fd28tGD4r5");
+        Client::setDefaultEndpoint("https://secure.payzen.eu");
+        Client::setDefaultClientEndpoint("https://client.payzen.eu");
+        Client::setdefaultSHA256Key("38453613e7f44dc58732bad3dca2bca3");
+
+        $client = new Client();
+        $store = array("value" => "sdk test string value");
+        $response = $client->post('V3/Charge/SDKTest', $store);
+
+        $this->assertEquals("SUCCESS", $response["status"]);
+        $this->assertEquals($store["value"], $response["answer"]["value"]);
+
+        $this->assertEquals(Constants::SDK_VERSION, $client->getVersion());
+        $this->assertEquals("69876357:testpublickey_DEMOPUBLICKEY95me92597fd28tGD4r5", $client->getPublicKey());
+        $this->assertEquals("69876357", $client->getUsername());
+        $this->assertEquals("testpassword_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M", $client->getPassword());
+        $this->assertEquals("https://secure.payzen.eu", $client->getEndpoint());
+        $this->assertEquals("https://client.payzen.eu", $client->getClientEndpoint());
+        $this->assertEquals("38453613e7f44dc58732bad3dca2bca3", $client->getSHA256Key());
+        $this->assertEquals(null, $client->getProxyHost());
+        $this->assertEquals(null, $client->getProxyPort());
+
+        Client::setDefaultProxy("simple.host", "1234");
+        $client2 = new Client();
+        $this->assertEquals("69876357", $client2->getUsername());
+        $this->assertEquals("simple.host", $client2->getProxyHost());
+        $this->assertEquals("1234", $client2->getProxyPort());
+
+        Client::resetDefaultConfiguration();
+        $client = new Client();
+        $this->assertEquals(null, $client->getPublicKey());
+        $this->assertEquals(null, $client->getUsername());
+        $this->assertEquals(null, $client->getPassword());
+        $this->assertEquals(null, $client->getEndpoint());
+        $this->assertEquals(null, $client->getClientEndpoint());
+        $this->assertEquals(null, $client->getSHA256Key());
+        $this->assertEquals(null, $client->getProxyHost());
+        $this->assertEquals(null, $client->getProxyPort());
     }
 
     /**
@@ -242,6 +289,8 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
         $store = array("value" => "sdk test string value");
         $response = $client->post('V3/Charge/SDKTest', $store);
+        $this->assertEquals("fake.host", $client->getProxyHost());
+        $this->assertEquals("1234", $client->getProxyPort());
     }
 
     /**
@@ -290,8 +339,8 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->fakePostData();
         $this->assertNull($client->getLastCalculatedHash());
 
-        /* not yet implemented */
-        $isValid = $client->checkHash("ktM7bSeTJpclvpm4eEE9N0LIyoxUvsQ9AAYbQI1xQx7Qh");
+        $client->setSHA256Key("ktM7bSeTJpclvpm4eEE9N0LIyoxUvsQ9AAYbQI1xQx7Qh");
+        $isValid = $client->checkHash();
 
         $this->assertTrue($isValid);
         $this->assertNotNull($client->getLastCalculatedHash());

@@ -10,11 +10,11 @@
 
 Lyra Network REST API SDK.
 
-##Requirements
+## Requirements
 
 PHP 5.3.3 and later.
 
-## Installation
+## Installation
 
 Lyra Network REST api SDK is available via [Composer/Packagist](https://packagist.org/packages/lyranetwork/krypton-php-sdk). Just add this line to your `composer.json` file:
 
@@ -59,13 +59,13 @@ docker-compose up -d
 
 Install deps
 ```sh
-docker exec -ti krypton-sdk composer install
+docker exec -ti krypton-php-sdk composer install
 ```
 
 and run the test suite with:
 
 ```sh
-docker exec -ti krypton-sdk ./vendor/bin/phpunit src/
+docker exec -ti krypton-php-sdk ./vendor/bin/phpunit src/
 ```
 
 ## License

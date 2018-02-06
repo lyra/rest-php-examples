@@ -6,6 +6,16 @@ use LyraNetwork\Constants;
 
 class Client
 {
+    private static $_defaultUsername = null;
+    private static $_defaultPassword = null;
+    private static $_defaultPublicKey = null;
+    private static $_defaultProxyHost = null;
+    private static $_defaultProxyPort = null;
+    private static $_defaultEndpoint = null;
+    private static $_defaultClientEndpoint = null;
+    private static $_defaultHashKey = null;
+    private static $_defaultHashAlgorithm = null;
+
     private $_username = null;
     private $_password = null;
     private $_publicKey = null;
@@ -15,28 +25,77 @@ class Client
     private $_proxyPort = null;
     private $_endpoint = null;
     private $_clientEndpoint = null;
+    private $_hashKey = null;
+    private $_hashAlgorithm = null;
     private $_lastCalculatedHash = null;
+
+    public function __construct() {
+        /* Assign default values */
+        $this->_username = self::$_defaultUsername;
+        $this->_password = self::$_defaultPassword;
+        $this->_publicKey = self::$_defaultPublicKey;
+        $this->_proxyHost = self::$_defaultProxyHost;
+        $this->_proxyPort = self::$_defaultProxyPort;
+        $this->_endpoint = self::$_defaultEndpoint;
+        $this->_clientEndpoint = self::$_defaultClientEndpoint;
+        $this->_hashKey = self::$_defaultHashKey;
+        $this->_hashAlgorithm = self::$_defaultHashAlgorithm;
+    }
+
+    public static function resetDefaultConfiguration() {
+        self::$_defaultUsername = null;
+        self::$_defaultPassword = null;
+        self::$_defaultPublicKey = null;
+        self::$_defaultProxyHost = null;
+        self::$_defaultProxyPort = null;
+        self::$_defaultEndpoint = null;
+        self::$_defaultClientEndpoint = null;
+        self::$_defaultHashKey = null;
+        self::$_defaultHashAlgorithm = null;
+    }
 
     public function getVersion() {
         return Constants::SDK_VERSION;
+    }
+
+    public static function setDefaultEndpoint($endpoint) {
+        static::$_defaultEndpoint = $endpoint;
     }
 
     public function setEndpoint($endpoint) {
          $this->_endpoint = $endpoint;
     }
 
-    public function setClientEndpoint($clientEndpoint) {
-        $this->_clientEndpoint = $clientEndpoint;
+    public function getEndpoint() {
+        return $this->_endpoint;
     }
 
-    public function getEndpoint() {
-         return $this->_endpoint;
+    public static function setDefaultClientEndpoint($clientEndpoint) {
+        static::$_defaultClientEndpoint = $clientEndpoint;
+    }
+
+    public function setClientEndpoint($clientEndpoint) {
+        $this->_clientEndpoint = $clientEndpoint;
     }
 
     public function getClientEndpoint() {
         if ($this->_clientEndpoint) return $this->_clientEndpoint;
         return $this->_endpoint;
    }
+
+    public static function setdefaultSHA256Key($defaultHashKey) {
+        static::$_defaultHashKey = $defaultHashKey;
+        static::$_defaultHashAlgorithm = "sha256";
+    }
+
+    public function setSHA256Key($hashKey) {
+        $this->_hashKey = $hashKey;
+        $this->_hashAlgorithm = "sha256";
+    }
+
+    public function getSHA256Key() {
+        return $this->_hashKey;
+}
 
     public function setPrivateKey($privateKey) {
         $auth = explode(':', $privateKey);
@@ -49,12 +108,32 @@ class Client
         $this->_password = $auth[1];
     }
 
+    public static function setDefaultUsername($defaultUsername) {
+        self::$_defaultUsername = $defaultUsername;
+    }
+
     public function setUsername($username) {
         $this->_username = $username;
     }
 
+    public function getUsername() {
+        return $this->_username;
+    }
+
+    public static function setDefaultPassword($defaultPassword) {
+        self::$_defaultPassword = $defaultPassword;
+    }
+
     public function setPassword($password) {
         $this->_password = $password;
+    }
+
+    public function getPassword() {
+        return $this->_password;
+    }
+
+    public static function setDefaultPublicKey($defaultPublicKey) {
+        self::$_defaultPublicKey = $defaultPublicKey;
     }
 
     public function setPublicKey($publicKey) {
@@ -65,9 +144,22 @@ class Client
         return $this->_publicKey;
     }
 
+    public static function setDefaultProxy($defaultHost, $defaultPort) {
+        self::$_defaultProxyHost = $defaultHost;
+        self::$_defaultProxyPort = $defaultPort;
+    }
+
     public function setProxy($host, $port) {
         $this->_proxyHost = $host;
         $this->_proxyPort = $port;
+    }
+
+    public function getProxyHost() {
+        return $this->_proxyHost;
+    }
+
+    public function getProxyPort() {
+        return $this->_proxyPort;
     }
 
     public function setTimeOuts($connectionTimeout, $timeout) {
@@ -218,12 +310,27 @@ class Client
 
     /**
      * check kr-answer object signature
+     * work for both browser and IPN check
      */
-    public function checkHash($hashKey)
+    public function checkHash()
     {
         /* check if the hash algorithm is supported */
-        if ($_POST['kr-hash-algorithm'] != "sha256") {
+        if ($_POST['kr-hash-algorithm'] != $this->_hashAlgorithm) {
             throw new LyraNetworkException("hash algorithm not supported:" . $_POST['kr-hash-algorithm']);
+        }
+
+        /* on some servers, kr-answer-type can be escaped */
+        $krAnswerType = str_replace('\/', '/', $_POST['kr-answer-type']);
+
+        /* choose the right key to use the check the signature */
+        if ($krAnswerType == "V3.1/BrowserRequest") {
+            /* answer from web-browser, we use the SHA256 key */
+            $hashKey = $this->getSHA256Key();
+        } elseif ($krAnswerType == "V3.1/IPNRequest") {
+            /* answer from IPN, we use the password as key */
+            $hashKey = $this->getPassword();
+        } else {
+            throw new LyraNetworkException("answer type not supported:" . $krAnswerType);
         }
 
         /* calculating the hash on our side */
