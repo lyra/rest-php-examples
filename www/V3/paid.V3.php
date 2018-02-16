@@ -17,11 +17,7 @@ require_once __DIR__ . '/../helpers.php';
  * Initialize the SDK 
  * Please !!UPDATE!! your keys in keys.php
  */
-$client = new LyraNetwork\Client();  
-$client->setUsername($_username);           /* username defined in keys.php file */
-$client->setPassword($_password);           /* password defined in keys.php file */
-$client->setPublicKey($_publicKey);         /* key defined in keys.php file */
-$client->setEndpoint($_endpoint);           /* REST API endpoint defined in keys.php file */
+$client = new LyraNetwork\Client();
 
 /* No POST data ? paid page in not called after a payment form */
 if (empty($_POST)) {
