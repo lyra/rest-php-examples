@@ -6,6 +6,8 @@ use LyraNetwork\Constants;
 
 class Client
 {
+    const DEFAULT_VERSION = "V3";
+
     private static $_defaultUsername = null;
     private static $_defaultPassword = null;
     private static $_defaultPublicKey = null;
@@ -179,6 +181,13 @@ class Client
 
         if (!$this->_endpoint) {
             throw new LyraNetworkException("REST API endpoint not defined in the SDK");
+        }
+        
+        /** add default version number if no one is defined
+         *  to avoid regression between V3.0 and V3.1 SDK series
+         */
+        if (substr($target,0,2) != "V3") {
+            $target = Client::DEFAULT_VERSION . "/" . $target;
         }
 
         if (extension_loaded('curl')) {

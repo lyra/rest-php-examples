@@ -1,12 +1,13 @@
 # Changelog
 
-### master
+### 3.1.2 2018-02-08
 
 - add setDefaultSHA256Key(), setSHA256Key() and getSHA256Key() to Client.php
 - add default static configuration method to Client.php (Client::setDefault*() methods)
 - add getUsername(), getPassword(), getProxyPort() and getProxyHost() to Client.php
 - change docker container name from krypton-sdk to krypton-php-sdk
 - adding PHP 7.2 Travis tests
+- Add default version (V3) to url without any versions
 
 ### 3.1.1 2018-01-19
 

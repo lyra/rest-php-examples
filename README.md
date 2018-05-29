@@ -4,15 +4,7 @@ Lyra Network REST API code examples using [our PHP SDK](https://github.com/LyraN
 
 ## available examples
 
-Available examples are:
-
-| php file                   | Description                                         |
-|----------------------------|-----------------------------------------------------|
-| minimalEmbeddedForm.php    | Embedded payment form example                       |
-| SDKTest.php                | How to initialize the SDK                           |
-| paid.php                   | Landing page example if a payment is accepted       |
-| minimalEmbeddedForm.V3.php | Embedded payment form example (V3.0 legacy version) |
-
+Available examples: see index.html
 
 ## Try it with docker
 
