@@ -1,5 +1,10 @@
 # Changelog
 
+### 3.1.3 2018-05-29
+
+- add sha256_hmac hash algorithm support
+- remove travis CI tests for php 5.3.3
+
 ### 3.1.2 2018-02-08
 
 - add setDefaultSHA256Key(), setSHA256Key() and getSHA256Key() to Client.php

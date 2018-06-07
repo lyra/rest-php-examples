@@ -16,7 +16,6 @@ class Client
     private static $_defaultEndpoint = null;
     private static $_defaultClientEndpoint = null;
     private static $_defaultHashKey = null;
-    private static $_defaultHashAlgorithm = null;
 
     private $_username = null;
     private $_password = null;
@@ -28,7 +27,6 @@ class Client
     private $_endpoint = null;
     private $_clientEndpoint = null;
     private $_hashKey = null;
-    private $_hashAlgorithm = null;
     private $_lastCalculatedHash = null;
 
     public function __construct() {
@@ -41,7 +39,6 @@ class Client
         $this->_endpoint = self::$_defaultEndpoint;
         $this->_clientEndpoint = self::$_defaultClientEndpoint;
         $this->_hashKey = self::$_defaultHashKey;
-        $this->_hashAlgorithm = self::$_defaultHashAlgorithm;
     }
 
     public static function resetDefaultConfiguration() {
@@ -53,7 +50,6 @@ class Client
         self::$_defaultEndpoint = null;
         self::$_defaultClientEndpoint = null;
         self::$_defaultHashKey = null;
-        self::$_defaultHashAlgorithm = null;
     }
 
     public function getVersion() {
@@ -87,12 +83,10 @@ class Client
 
     public static function setdefaultSHA256Key($defaultHashKey) {
         static::$_defaultHashKey = $defaultHashKey;
-        static::$_defaultHashAlgorithm = "sha256";
     }
 
     public function setSHA256Key($hashKey) {
         $this->_hashKey = $hashKey;
-        $this->_hashAlgorithm = "sha256";
     }
 
     public function getSHA256Key() {
@@ -323,13 +317,16 @@ class Client
      */
     public function checkHash()
     {
+        $supportedHashAlgorithm = array('sha256', 'sha256_hmac');
+
         /* check if the hash algorithm is supported */
-        if ($_POST['kr-hash-algorithm'] != $this->_hashAlgorithm) {
+        if (!in_array($_POST['kr-hash-algorithm'],  $supportedHashAlgorithm)) {
             throw new LyraNetworkException("hash algorithm not supported:" . $_POST['kr-hash-algorithm']);
         }
 
-        /* on some servers, kr-answer-type can be escaped */
+        /* on some servers, / can be escaped */
         $krAnswerType = str_replace('\/', '/', $_POST['kr-answer-type']);
+        $krAnswer = str_replace('\/', '/', $_POST['kr-answer']);
 
         /* choose the right key to use the check the signature */
         if ($krAnswerType == "V3.1/BrowserRequest") {
@@ -342,9 +339,12 @@ class Client
             throw new LyraNetworkException("answer type not supported:" . $krAnswerType);
         }
 
-        /* calculating the hash on our side */
-        $stringToHash = $_POST['kr-answer'] . "+" . $hashKey;
-        $calculatedHash = hash($_POST['kr-hash-algorithm'], $stringToHash);
+        if ($_POST['kr-hash-algorithm'] == 'sha256_hmac') {
+            $calculatedHash = hash_hmac('sha256', $krAnswer, $hashKey);
+        } else { /* sha256 */
+            $stringToHash = $krAnswer . "+" . $hashKey;
+            $calculatedHash = hash($_POST['kr-hash-algorithm'], $stringToHash);
+        }
         $this->_lastCalculatedHash = $calculatedHash;
 
         /* return true if calculated hash and sent hash are the same */

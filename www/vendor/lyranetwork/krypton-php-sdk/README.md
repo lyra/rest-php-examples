@@ -12,7 +12,7 @@ Lyra Network REST API SDK.
 
 ## Requirements
 
-PHP 5.3.3 and later.
+PHP 5.4.0 and later.
 
 ## Installation
 

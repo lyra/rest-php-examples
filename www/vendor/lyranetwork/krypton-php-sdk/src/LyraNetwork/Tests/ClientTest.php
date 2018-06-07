@@ -10,12 +10,19 @@ use LyraNetwork\Constants;
  */
 class ClientTest extends PHPUnit_Framework_TestCase
 {
-    private function fakePostData()
+    private function fakePostData($hashAlgorithm='sha256')
     {
-        $_POST['kr-hash'] = "6ad18cd5bd4cf8b2a265c283c3a829dd58fea0db032e3f73ae670f74e1f4c7dc";
-        $_POST['kr-hash-algorithm'] = "sha256";
-        $_POST['kr-answer-type'] = "V3.1\/BrowserRequest";
-        $_POST['kr-answer'] = '{"shopId":"33148340","orderCycle":"CLOSED","orderStatus":"PAID","orderDetails":{"orderTotalAmount":399,"orderCurrency":"EUR","mode":"TEST","orderId":"446cedc74e404af2ace4ecb4c64513fa","_type":"V3.1/OrderDetails"},"transactions":[{"uuid":"9b7ad826931542198131fd939cf88816","status":"PAID","detailedStatus":"AUTHORISED","_type":"V3.1/BrowserRequestTransaction"}],"serverDate":"2017-11-09T15:33:49+00:00","_type":"V3.1/BrowserRequest"}';
+        if ($hashAlgorithm == 'sha256_hmac') {
+            $_POST['kr-hash'] = "e9c3b47330380460880e025a256d98d97aeb26bd6807c3826fa366166ba212b4";
+            $_POST['kr-hash-algorithm'] = "sha256_hmac";
+            $_POST['kr-answer-type'] = "V3.1\/BrowserRequest";
+            $_POST['kr-answer'] = '{"shopId":"33148340","orderCycle":"CLOSED","orderStatus":"PAID","orderDetails":{"orderTotalAmount":990,"orderCurrency":"EUR","mode":"TEST","orderId":"myOrderId-415662","_type":"V3.1\/OrderDetails"},"transactions":[{"uuid":"a84a1267f1b342f4baf8eb9a7a6e86df","status":"PAID","detailedStatus":"AUTHORISED","_type":"V3.1\/BrowserRequestTransaction"}],"serverDate":"2018-05-29T15:04:10+00:00","_type":"V3.1\/BrowserRequest"}';
+        } else {
+            $_POST['kr-hash'] = "6ad18cd5bd4cf8b2a265c283c3a829dd58fea0db032e3f73ae670f74e1f4c7dc";
+            $_POST['kr-hash-algorithm'] = "sha256";
+            $_POST['kr-answer-type'] = "V3.1\/BrowserRequest";
+            $_POST['kr-answer'] = '{"shopId":"33148340","orderCycle":"CLOSED","orderStatus":"PAID","orderDetails":{"orderTotalAmount":399,"orderCurrency":"EUR","mode":"TEST","orderId":"446cedc74e404af2ace4ecb4c64513fa","_type":"V3.1/OrderDetails"},"transactions":[{"uuid":"9b7ad826931542198131fd939cf88816","status":"PAID","detailedStatus":"AUTHORISED","_type":"V3.1/BrowserRequestTransaction"}],"serverDate":"2017-11-09T15:33:49+00:00","_type":"V3.1/BrowserRequest"}';
+        }
     }
 
     /**
@@ -366,12 +373,28 @@ class ClientTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * ./vendor/bin/phpunit --filter testCheckHash src/LyraNetwork/Tests/ClientTest.php
+     * ./vendor/bin/phpunit --filter testCheckHash256 src/LyraNetwork/Tests/ClientTest.php
      */
-    public function testCheckHash()
+    public function testCheckHash256()
     {
         $client = new Client();
-        $this->fakePostData();
+        $this->fakePostData('sha256');
+        $this->assertNull($client->getLastCalculatedHash());
+
+        $client->setSHA256Key("ktM7bSeTJpclvpm4eEE9N0LIyoxUvsQ9AAYbQI1xQx7Qh");
+        $isValid = $client->checkHash();
+
+        $this->assertTrue($isValid);
+        $this->assertNotNull($client->getLastCalculatedHash());
+    }
+
+    /**
+     * ./vendor/bin/phpunit --filter testCheckHash256HMAC src/LyraNetwork/Tests/ClientTest.php
+     */
+    public function testCheckHash256HMAC()
+    {
+        $client = new Client();
+        $this->fakePostData('sha256_hmac');
         $this->assertNull($client->getLastCalculatedHash());
 
         $client->setSHA256Key("ktM7bSeTJpclvpm4eEE9N0LIyoxUvsQ9AAYbQI1xQx7Qh");

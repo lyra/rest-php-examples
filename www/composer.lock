@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LyraNetwork/krypton-php-sdk.git",
-                "reference": "0d2dd723de35a04fec05105292a07edf84c563e9"
+                "reference": "d5d3cea28bfec7002fab12e661f34a605b949823"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/0d2dd723de35a04fec05105292a07edf84c563e9",
-                "reference": "0d2dd723de35a04fec05105292a07edf84c563e9",
+                "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/d5d3cea28bfec7002fab12e661f34a605b949823",
+                "reference": "d5d3cea28bfec7002fab12e661f34a605b949823",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 "payment",
                 "sdk"
             ],
-            "time": "2018-02-08T09:31:07+00:00"
+            "time": "2018-05-29T15:49:32+00:00"
         }
     ],
     "packages-dev": [],
