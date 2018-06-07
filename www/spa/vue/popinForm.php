@@ -32,7 +32,7 @@ require_once __DIR__ . '/../../keys.php';
     <!-- VueJS library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
 </head>
-<body>
+<body style="padding-top:20px">
     <div id="paymentFormApp">
         <!-- Create form data -->
         <input v-model="amount" name="amount" type="number" step="0.01"/>

@@ -44,7 +44,7 @@ $formToken = $response["answer"]["formToken"];
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
 </head>
-<body>
+<body style="padding-top:20px">
   <!-- payment form -->
   <div class="kr-embedded"
    kr-form-token="<?php echo $formToken;?>">

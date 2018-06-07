@@ -65,7 +65,7 @@ $formToken = $response["answer"]["formToken"];
    src="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V3.1/ext/classic.js">
   </script>
 </head>
-<body>
+<body style="padding-top:20px">
   <!-- payment form -->
   <div class="kr-embedded"
    kr-form-token="<?php echo $formToken;?>">
