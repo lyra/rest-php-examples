@@ -64,6 +64,12 @@ $formToken = $response["answer"]["formToken"];
   <script 
    src="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V3.1/ext/classic.js">
   </script>
+
+  <!-- include font awesome for custom fields icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+        integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+
 </head>
 <body style="padding-top:20px">
   <!-- payment form -->
@@ -71,8 +77,12 @@ $formToken = $response["answer"]["formToken"];
    kr-form-token="<?php echo $formToken;?>">
 
    <!-- custom fields -->
-   <input type="text" name="acme-email" class="kr-theme" kr-tab-order="1" required />
-   <input type="hidden" name="acme-ip" class="kr-theme" kr-tab-order="2" value="1.2.3.4" />
+   <input type="text"
+          name="acme-email"
+          placeholder="email"
+          class="kr-theme
+          kr-icon="fas fa-envelope"
+          required/>
 
     <!-- payment form fields -->
     <div class="kr-pan"></div>
