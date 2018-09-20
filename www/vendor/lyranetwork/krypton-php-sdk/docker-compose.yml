@@ -4,4 +4,4 @@ krypton_sdk:
   volumes:
     - ./:/var/www/html/
   ports:
-    - 6981:80
+    - 6968:80

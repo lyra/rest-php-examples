@@ -1,10 +1,10 @@
 {
     "name": "lyranetwork/krypton-php-sdk",
     "license": "MIT",
-    "description": "Lyra Network PHP SDK",
-    "keywords": ["lyra network", "api", "sdk", "creditcard", "payment"],
+    "description": "Lyra REST API PHP SDK",
+    "keywords": ["lyra", "api", "sdk", "creditcard", "payment", "rest"],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.0",
         "ext-json": "*"
     },
     "suggest": {

@@ -17,7 +17,7 @@ require_once __DIR__ . '/helpers.php';
  * Initialize the SDK 
  * see keys.php
  */
-$client = new LyraNetwork\Client();
+$client = new Lyra\Client();
 
 /**
  * Define the card to use
@@ -45,7 +45,7 @@ $store = array(
 /**
  * do the web-service call
  */
-$response = $client->post("V3.1/Charge/CreatePayment", $store);
+$response = $client->post("V4/Charge/CreatePayment", $store);
 
 /* I check if there is some errors */
 if ($response['status'] != 'SUCCESS') {

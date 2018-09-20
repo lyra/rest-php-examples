@@ -3,10 +3,10 @@
 
 [![Build Status](https://travis-ci.org/LyraNetwork/krypton-php-sdk.svg?branch=master)](https://travis-ci.org/LyraNetwork/krypton-php-sdk)
 [![Coverage Status](https://coveralls.io/repos/github/LyraNetwork/krypton-php-sdk/badge.svg?branch=master)](https://coveralls.io/github/LyraNetwork/krypton-php-sdk?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/lyranetwork/krypton-php-sdk/v/stable)](https://packagist.org/packages/lyranetwork/krypton-php-sdk)
-[![Latest Unstable Version](https://poser.pugx.org/lyranetwork/krypton-php-sdk/v/unstable)](//packagist.org/packages/LyraNetwork/krypton-php-sdk)
-[![Total Downloads](https://poser.pugx.org/lyranetwork/krypton-php-sdk/downloads)](https://packagist.org/packages/lyranetwork/krypton-php-sdk)
-[![License](https://poser.pugx.org/lyranetwork/krypton-php-sdk/license)](https://packagist.org/packages/lyranetwork/krypton-php-sdk)
+[![Latest Stable Version](https://poser.pugx.org/LyraNetwork/krypton-php-sdk/v/stable)](https://packagist.org/packages/LyraNetwork/krypton-php-sdk)
+[![Latest Unstable Version](https://poser.pugx.org/LyraNetwork/krypton-php-sdk/v/unstable)](//packagist.org/packages/LyraNetwork/krypton-php-sdk)
+[![Total Downloads](https://poser.pugx.org/LyraNetwork/krypton-php-sdk/downloads)](https://packagist.org/packages/LyraNetwork/krypton-php-sdk)
+[![License](https://poser.pugx.org/LyraNetwork/krypton-php-sdk/license)](https://packagist.org/packages/LyraNetwork/krypton-php-sdk)
 
 Lyra Network REST API SDK.
 
@@ -16,16 +16,16 @@ PHP 5.4.0 and later.
 
 ## Installation
 
-Lyra Network REST api SDK is available via [Composer/Packagist](https://packagist.org/packages/lyranetwork/krypton-php-sdk). Just add this line to your `composer.json` file:
+Lyra Network REST api SDK is available via [Composer/Packagist](https://packagist.org/packages/LyraNetwork/krypton-php-sdk). Just add this line to your `composer.json` file:
 
 ```json
-"lyranetwork/krypton-php-sdk": "~3.1"
+"lyra/krypton-php-sdk": "4.0.*"
 ```
 
 or
 
 ```sh
-composer require lyranetwork/krypton-php-sdk:~3.1
+composer require lyra/krypton-php-sdk:4.0.*
 ```
 
 To use the SDK, use Composer's [autoload](https://getcomposer.org/doc/00-intro.md#autoloading):

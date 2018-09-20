@@ -9,7 +9,7 @@ require_once __DIR__ . '/keys.php';
  * Initialize the SDK 
  * Please update your keys in keys.php
  */
-$client = new LyraNetwork\Client();         /* Create the client SDK */
+$client = new Lyra\Client();         /* Create the client SDK */
 $client->setUsername($_username);           /* username defined in keys.php file */
 $client->setPassword($_password);           /* password defined in keys.php file */
 $client->setPublicKey($_publicKey);         /* key defined in keys.php file */
@@ -20,7 +20,7 @@ if (isset($_GET['requestObject'])) {
      * I create a formToken
      */
     $store = json_decode($_GET['requestObject']);
-    $response = $client->post("V3.1/Charge/CreatePayment", $store);
+    $response = $client->post("V4/Charge/CreatePayment", $store);
 
     /* I check if there is some errors */
     if ($response['status'] != 'SUCCESS') {

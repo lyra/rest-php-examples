@@ -12,17 +12,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LyraNetwork/krypton-php-sdk.git",
-                "reference": "d5d3cea28bfec7002fab12e661f34a605b949823"
+                "reference": "673946717954f4cdd226663df43004bcc1fe0ac1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/d5d3cea28bfec7002fab12e661f34a605b949823",
-                "reference": "d5d3cea28bfec7002fab12e661f34a605b949823",
+                "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/673946717954f4cdd226663df43004bcc1fe0ac1",
+                "reference": "673946717954f4cdd226663df43004bcc1fe0ac1",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": ">=5.3.3"
+                "php": ">=5.4.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "4.1.*"
@@ -40,15 +40,16 @@
             "license": [
                 "MIT"
             ],
-            "description": "Lyra Network PHP SDK",
+            "description": "Lyra REST API PHP SDK",
             "keywords": [
                 "api",
                 "creditcard",
-                "lyra network",
+                "lyra",
                 "payment",
+                "rest",
                 "sdk"
             ],
-            "time": "2018-05-29T15:49:32+00:00"
+            "time": "2018-09-20T09:07:16+00:00"
         }
     ],
     "packages-dev": [],

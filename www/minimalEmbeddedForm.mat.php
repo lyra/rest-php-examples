@@ -9,21 +9,26 @@
 /**
  * I initialize the PHP SDK
  */
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../keys.php';
-require_once __DIR__ . '/../helpers.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/keys.php';
+require_once __DIR__ . '/helpers.php';
 
 /** 
  * Initialize the SDK 
- * Please update your keys in keys.php
+ * see keys.php
  */
-$client = new LyraNetwork\Client();
+$client = new Lyra\Client();
 
 /**
  * I create a formToken
  */
-$store = array("amount" => 250, "currency" => "EUR");
-$response = $client->post("V3/Charge/CreatePayment", $store);
+$store = array("amount" => 250, 
+"currency" => "EUR", 
+"customer" => array(
+  "email" => "sample@example.com",
+  "orderId" => uniqid("MyOrderId")
+));
+$response = $client->post("V4/Charge/CreatePayment", $store);
 
 /* I check if there is some errors */
 if ($response['status'] != 'SUCCESS') {
@@ -35,6 +40,7 @@ if ($response['status'] != 'SUCCESS') {
 
 /* everything is fine, I extract the formToken */
 $formToken = $response["answer"]["formToken"];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,6 +49,21 @@ $formToken = $response["answer"]["formToken"];
    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+
+  <!-- Javascript library. Should be loaded in head section -->
+  <script 
+   src="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
+   kr-public-key="<?php echo $client->getPublicKey();?>"
+   kr-post-url-success="paid.php">
+  </script>
+
+  <!-- theme and plugins. should be loaded after the javascript library -->
+  <!-- not mandatory but helps to have a nice payment form out of the box -->
+  <link rel="stylesheet" 
+   href="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V4.0/ext/material-reset.css">
+  <script 
+   src="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V4.0/ext/material.js">
+  </script>
 </head>
 <body style="padding-top:20px">
   <!-- payment form -->
@@ -55,17 +76,10 @@ $formToken = $response["answer"]["formToken"];
     <div class="kr-security-code"></div>  
 
     <!-- payment form submit button -->
-    <button class="kr-payment-button kr-text-animated">Pay now!</button>
+    <button class="kr-payment-button"></button>
 
     <!-- error zone -->
     <div class="kr-form-error"></div>
-  </div> 
-  
-  <!-- Javascript library. Should be loaded after the payment form -->
-  <script src="<?php echo $client->getClientEndPoint();?>/static/js/krypton-client/V3/stable/kr.min.js?formToken=<?php echo $formToken;?>"
-      kr-public-key="<?php echo $client->getPublicKey();?>"
-      kr-post-url="paid.V3.php"
-      kr-theme="icons-1">
-  </script>
+  </div>  
 </body>
 </html>

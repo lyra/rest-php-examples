@@ -17,7 +17,7 @@ require_once __DIR__ . '/helpers.php';
  * Initialize the SDK 
  * see keys.php
  */
-$client = new LyraNetwork\Client();
+$client = new Lyra\Client();
 
 /**
  * I create a formToken
@@ -28,7 +28,7 @@ $store = array("amount" => 250,
   "email" => "sample@example.com",
   "orderId" => uniqid("MyOrderId")
 ));
-$response = $client->post("V3.1/Charge/CreatePayment", $store);
+$response = $client->post("V4/Charge/CreatePayment", $store);
 
 /* I check if there is some errors */
 if ($response['status'] != 'SUCCESS') {
@@ -52,7 +52,7 @@ $formToken = $response["answer"]["formToken"];
 
   <!-- Javascript library. Should be loaded in head section -->
   <script 
-   src="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V3.1/stable/kr-payment-form.min.js"
+   src="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
    kr-public-key="<?php echo $client->getPublicKey();?>"
    kr-post-url-success="paid.php">
   </script>
@@ -60,9 +60,9 @@ $formToken = $response["answer"]["formToken"];
   <!-- theme and plugins. should be loaded after the javascript library -->
   <!-- not mandatory but helps to have a nice payment form out of the box -->
   <link rel="stylesheet" 
-   href="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V3.1/ext/classic-reset.css">
+   href="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V4.0/ext/classic-reset.css">
   <script 
-   src="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V3.1/ext/classic.js">
+   src="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V4.0/ext/classic.js">
   </script>
 </head>
 <body style="padding-top:20px">

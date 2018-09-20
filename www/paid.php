@@ -17,7 +17,7 @@ require_once __DIR__ . '/helpers.php';
  * Initialize the SDK 
  * see keys.php
  */
-$client = new LyraNetwork\Client();
+$client = new Lyra\Client();
 
 /* No POST data ? paid page in not called after a payment form */
 if (empty($_POST)) {
@@ -56,7 +56,7 @@ $formAnswer = $client->getParsedFormAnswer();
 
 <?php
 /* Check the signature */
-if (!$client->checkHash()) {
+if (!$client->checkHash($client->getSHA256Key())) {
     //something wrong, probably a fraud ....
     signature_error($formAnswer['kr-answer']['transactions'][0]['uuid'], $hashKey, 
                     $client->getLastCalculatedHash(), $_POST['kr-hash']);

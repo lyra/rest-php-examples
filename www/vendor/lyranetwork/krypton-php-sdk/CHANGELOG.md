@@ -1,5 +1,14 @@
 # Changelog
 
+### 4.0.0 Work in progress
+
+- Remove V3.0 support (fallback and sha signature checks)
+- remove deprecated Client->setPrivateKey() fuonction
+- Client->chechHash($key) need the signature key as first parameter
+- Renamed LyraNetwork directories, classes and namespaces to Lyra
+
+- Change docker port from 6981 to 6968
+
 ### 3.1.3 2018-05-29
 
 - add sha256_hmac hash algorithm support

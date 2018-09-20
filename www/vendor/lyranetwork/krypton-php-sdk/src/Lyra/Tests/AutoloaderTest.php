@@ -1,15 +1,15 @@
 <?php
-namespace LyraNetwork\Tests;
+namespace Lyra\Tests;
 
 use PHPUnit_Framework_TestCase;
 
 /**
- * ./vendor/bin/phpunit src/LyraNetwork/Tests/AutoloaderTest.php
+ * ./vendor/bin/phpunit src/Lyra/Tests/AutoloaderTest.php
  */
 class AutloaderTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * ./vendor/bin/phpunit --filter testAutoloader src/LyraNetwork/Tests/AutoloaderTest.php
+     * ./vendor/bin/phpunit --filter testAutoloader src/Lyra/Tests/AutoloaderTest.php
      * Test standalone autoloader (not the composer one)
      */
     public function testAutoloader()
