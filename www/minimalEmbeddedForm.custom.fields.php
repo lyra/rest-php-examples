@@ -80,7 +80,7 @@ $formToken = $response["answer"]["formToken"];
    <input type="text"
           name="acme-email"
           placeholder="email"
-          class="kr-theme
+          class="kr-theme"
           kr-icon="fas fa-envelope"
           required/>
 

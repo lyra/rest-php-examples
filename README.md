@@ -21,4 +21,4 @@ and go to http://localhost:6980
 
 ## Try it using your favorite web-server
 
-Copy src/ directory content to your PHP server, and go to *index.html* page. 
+Copy src/ directory content to your PHP server, and go to *index.html* page.
