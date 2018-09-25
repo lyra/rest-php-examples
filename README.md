@@ -1,6 +1,6 @@
 # REST API with javascript client code samples
 
-Lyra Network REST API code examples using [our PHP SDK](https://github.com/LyraNetwork/krypton-php-sdk).
+Lyra REST API code examples using [our PHP SDK](https://github.com/lyra/rest-php-example).
 
 ## available examples
 

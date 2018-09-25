@@ -189,7 +189,7 @@ class Client
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
         curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'Krypton PHP SDK ' . Constants::SDK_VERSION);
+        curl_setopt($curl, CURLOPT_USERAGENT, 'REST PHP SDK ' . Constants::SDK_VERSION);
         curl_setopt($curl, CURLOPT_USERPWD, $authString);
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($array));
@@ -234,7 +234,7 @@ class Client
             'header'        => 'Authorization: Basic ' . base64_encode($authString) . "\r\n".
                               'Content-Type: application/json',
             'content'       => json_encode($array),
-            'user_agent'    => 'Krypton PHP SDK fallback ' . Constants::SDK_VERSION,
+            'user_agent'    => 'REST PHP SDK fallback ' . Constants::SDK_VERSION,
             'timeout'       => $this->_timeout,
             'ignore_errors' => true
         );

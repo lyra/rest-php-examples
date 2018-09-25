@@ -1,4 +1,4 @@
-krypton_php_examples:
+rest_php_examples:
   image: php:7.0-apache
   volumes:
     - ./www/:/var/www/html/

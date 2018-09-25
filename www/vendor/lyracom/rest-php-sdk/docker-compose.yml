@@ -1,6 +1,6 @@
-krypton_sdk:
+lyra_php_api_sdk:
   build: .
-  container_name:  krypton-php-sdk
+  container_name:  lyra-php-api-sdk
   volumes:
     - ./:/var/www/html/
   ports:

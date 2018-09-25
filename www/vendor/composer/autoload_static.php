@@ -7,24 +7,14 @@ namespace Composer\Autoload;
 class ComposerStaticInit66ccf4a4ee6c6fb2c858ec4948c3760e
 {
     public static $fallbackDirsPsr4 = array (
-        0 => __DIR__ . '/..' . '/lyranetwork/krypton-php-sdk/src',
-    );
-
-    public static $prefixesPsr0 = array (
-        'L' => 
-        array (
-            'LyraNetwork' => 
-            array (
-                0 => __DIR__ . '/../..' . '/src',
-            ),
-        ),
+        0 => __DIR__ . '/../..' . '/src',
+        1 => __DIR__ . '/..' . '/lyracom/rest-php-sdk/src',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->fallbackDirsPsr4 = ComposerStaticInit66ccf4a4ee6c6fb2c858ec4948c3760e::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit66ccf4a4ee6c6fb2c858ec4948c3760e::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

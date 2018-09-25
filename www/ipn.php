@@ -3,7 +3,7 @@
  * Instant Payment Notification (IPN) merchant script example
  * 
  * To start the PHP server, go to 
- * https://github.com/LyraNetwork/krypton-php-examples
+ * https://github.com/lyra/rest-php-example
  *
  */
 

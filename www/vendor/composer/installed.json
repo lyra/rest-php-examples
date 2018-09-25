@@ -1,17 +1,17 @@
 [
     {
-        "name": "lyranetwork/krypton-php-sdk",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "name": "lyracom/rest-php-sdk",
+        "version": "4.0.1",
+        "version_normalized": "4.0.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/LyraNetwork/krypton-php-sdk.git",
-            "reference": "673946717954f4cdd226663df43004bcc1fe0ac1"
+            "url": "https://github.com/lyra/rest-php-sdk.git",
+            "reference": "58c848b9b7caa7f5940d14234910b135f46e1a2c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/LyraNetwork/krypton-php-sdk/zipball/673946717954f4cdd226663df43004bcc1fe0ac1",
-            "reference": "673946717954f4cdd226663df43004bcc1fe0ac1",
+            "url": "https://api.github.com/repos/lyra/rest-php-sdk/zipball/58c848b9b7caa7f5940d14234910b135f46e1a2c",
+            "reference": "58c848b9b7caa7f5940d14234910b135f46e1a2c",
             "shasum": ""
         },
         "require": {
@@ -24,9 +24,9 @@
         "suggest": {
             "ext-curl": "*"
         },
-        "time": "2018-09-20T09:07:16+00:00",
+        "time": "2018-09-24T14:17:27+00:00",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "": "src/"

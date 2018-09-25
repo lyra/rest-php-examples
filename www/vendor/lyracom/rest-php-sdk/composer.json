@@ -1,5 +1,5 @@
 {
-    "name": "lyranetwork/krypton-php-sdk",
+    "name": "lyracom/rest-php-sdk",
     "license": "MIT",
     "description": "Lyra REST API PHP SDK",
     "keywords": ["lyra", "api", "sdk", "creditcard", "payment", "rest"],

@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '' => array($vendorDir . '/lyranetwork/krypton-php-sdk/src'),
+    '' => array($baseDir . '/src', $vendorDir . '/lyracom/rest-php-sdk/src'),
 );

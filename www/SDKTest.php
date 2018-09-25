@@ -3,7 +3,7 @@
  * SDK installation and test minimal code
  * 
  * To run the example, go to 
- * https://github.com/LyraNetwork/krypton-php-examples
+ * hhttps://github.com/lyra/rest-php-example
  */
 
 /**
@@ -18,16 +18,12 @@ require_once __DIR__ . '/helpers.php';
  * Please update your keys in keys.php
  */
 $client = new Lyra\Client();  
-$client->setUsername($_username);           /* username defined in keys.php file */
-$client->setPassword($_password);           /* password defined in keys.php file */
-$client->setPublicKey($_publicKey);         /* key defined in keys.php file */
-$client->setEndpoint($_endpoint);           /* REST API endpoint defined in keys.php file */
 
 /**
  * I send test data
  */
 $store = array("value" => "my testing value");
-$response = $client->post("V3.1/Charge/SDKTest", $store);
+$response = $client->post("V4/Charge/SDKTest", $store);
 ?>
 
 <html>

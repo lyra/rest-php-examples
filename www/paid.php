@@ -3,7 +3,7 @@
  * Payment done landing page example
  * 
  * To run the example, go to 
- * https://github.com/LyraNetwork/krypton-php-examples
+ * hhttps://github.com/lyra/rest-php-example
  */
 
 /**
