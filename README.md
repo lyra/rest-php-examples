@@ -1,6 +1,6 @@
 # REST API with javascript client code samples
 
-Lyra REST API code examples using [our PHP SDK](https://github.com/lyra/rest-php-example).
+Lyra REST API code examples using [our PHP SDK](https://github.com/lyra/rest-php-sdk).
 
 ## available examples
 
