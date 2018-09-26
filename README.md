@@ -2,7 +2,12 @@
 
 Lyra REST API code examples using [our PHP SDK](https://github.com/lyra/rest-php-sdk).
 
-## available examples
+## Configure your keys
+
+All authentication information are defined in [keys.php](https://github.com/lyra/rest-php-examples/blob/master/www/keys.php).
+You can use the already defined demo keys or update it with yours.
+
+## Available examples
 
 Available examples: see index.html
 
