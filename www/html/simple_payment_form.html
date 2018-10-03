@@ -8,23 +8,23 @@
 
   <!-- Javascript library. Should be loaded in head section -->
   <script 
-   src="{{site.platforms[site.platform].client_endpoint}}" 
-   kr-public-key="{{site.platforms[site.platform]['shops'][site.shop].public_key}}" 
+   src="{{site.kr_js_endpoint}}/stable/kr-payment-form.min.js" 
+   kr-public-key="{{site.kr_demo_public_key}}" 
    kr-post-url-success="paid.html">
   </script>
 
   <!-- theme and plugins. should be loaded after the javascript library -->
   <!-- not mandatory but helps to have a nice payment form out of the box -->
   <link rel="stylesheet" 
-  href="{{site.platforms[site.platform].client_endpoint|replace('stable/kr-payment-form.min.js', 'ext/classic-reset.css')}}">
+  href="{{site.kr_js_endpoint}}/ext/classic-reset.css">
  <script 
-  src="{{site.platforms[site.platform].client_endpoint|replace('stable/kr-payment-form.min.js', 'ext/classic.js')}}">
+  src="{{site.kr_js_endpoint}}/ext/classic.js">
  </script> 
 </head>
 <body>
   <!-- payment form -->
   <div class="kr-embedded" 
-   kr-form-token="{{site.credentials.demo_token}}">
+   kr-form-token="{{site.kr_demo_token}}">
 
     <!-- payment form fields -->
     <div class="kr-pan"></div>

@@ -1,6 +1,6 @@
 <?php 
 /**
- * Embbeded Form minimal integration example
+ * Embbeded Form minimal integration example with material theme
  * 
  * To run the example, go to 
  * hhttps://github.com/lyra/rest-php-example

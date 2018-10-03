@@ -1,6 +1,6 @@
 <?php 
 /**
- * REST API example creating a payment method token
+ * Use a already created payment method token
  * 
  * To run the example, go to 
  * hhttps://github.com/lyra/rest-php-example
@@ -20,28 +20,13 @@ require_once __DIR__ . '/helpers.php';
 $client = new Lyra\Client();
 
 /**
- * Define the card to use
- */
-$card = array(
-  "paymentMethodType" => "CARD",
-  "pan" => "4970100000000055",
-  "expiryMonth" => "11",
-  "expiryYear" => "21",
-  "securityCode" => "123"
-);
-
-/**
- * starting to create a transaction
+ * create a transaction with a payment method token
  */
 $store = array(
   "amount" => 250, 
   "currency" => "EUR",
-  "formAction" => "REGISTER_PAY",
-  "paymentForms" => array($card),
-  "customer" => array(
-    "email" => "sample@example.com",
-    "orderId" => uniqid("MyOrderId")
-));
+  "paymentMethodToken" => "b6e51ba31f934ac5b25ccad2a52ccd56"
+);
 
 /**
  * do the web-service call

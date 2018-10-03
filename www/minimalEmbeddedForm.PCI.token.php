@@ -31,7 +31,7 @@ $card = array(
 );
 
 /**
- * starting to create a transaction
+ * starting to create a transaction and register the card
  */
 $store = array(
   "amount" => 250, 

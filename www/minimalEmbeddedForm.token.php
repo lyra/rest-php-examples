@@ -1,6 +1,6 @@
 <?php 
 /**
- * Embbeded Form minimal integration example with custom fields
+ * Embbeded Form example creating a payment method token
  * 
  * To run the example, go to 
  * hhttps://github.com/lyra/rest-php-example
@@ -24,10 +24,12 @@ $client = new Lyra\Client();
  */
 $store = array("amount" => 250, 
 "currency" => "EUR", 
+"formAction" => "REGISTER_PAY",
 "customer" => array(
   "email" => "sample@example.com",
   "orderId" => uniqid("MyOrderId")
 ));
+
 $response = $client->post("V4/Charge/CreatePayment", $store);
 
 /* I check if there is some errors */
@@ -64,25 +66,11 @@ $formToken = $response["answer"]["formToken"];
   <script 
    src="<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V4.0/ext/classic.js">
   </script>
-
-  <!-- include font awesome for custom fields icons -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-        integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-        crossorigin="anonymous">
-
 </head>
 <body style="padding-top:20px">
   <!-- payment form -->
   <div class="kr-embedded"
    kr-form-token="<?php echo $formToken;?>">
-
-   <!-- custom fields -->
-   <input type="text"
-          name="acme-email"
-          placeholder="email"
-          class="kr-theme"
-          kr-icon="fas fa-envelope"
-          required/>
 
     <!-- payment form fields -->
     <div class="kr-pan"></div>
