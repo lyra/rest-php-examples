@@ -50,7 +50,7 @@ $answer = $formAnswer['transactions'][0];
 /* get some parameters from the answer */
 $orderStatus = $answer = $formAnswer['orderStatus'];
 $orderId = $answer = $formAnswer['orderDetails']['orderId'];
-$transactionUuid = $formAnswer['orderDetails'][0]['uuid'];
+$transactionUuid = $formAnswer['transactions'][0]['uuid'];
 
 /* I update my database if needed */
 /* Add here your custom code */ 
