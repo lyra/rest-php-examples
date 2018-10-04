@@ -44,13 +44,13 @@ if (!$client->checkHash($client->getPassword())) {
 /* Retrieve the IPN content */
 $formAnswer = $client->getParsedFormAnswer();
 
-/* Retrieve the billingTransaction id from the IPN data */
-$answer = $formAnswer['transactions'][0];
+/* Retrieve the transaction id from the IPN data */
+$transaction = $formAnswer['transactions'][0];
 
 /* get some parameters from the answer */
-$orderStatus = $answer = $formAnswer['orderStatus'];
+$orderStatus = $formAnswer['orderStatus'];
 $orderId = $answer = $formAnswer['orderDetails']['orderId'];
-$transactionUuid = $formAnswer['transactions'][0]['uuid'];
+$transactionUuid = $transaction['uuid'];
 
 /* I update my database if needed */
 /* Add here your custom code */ 
