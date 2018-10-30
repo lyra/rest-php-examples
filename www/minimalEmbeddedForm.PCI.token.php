@@ -11,7 +11,7 @@
  */
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/keys.php';
-require_once __DIR__ . '/helpers.php';
+require_once __DIR__ . '/helpers.PCI.php';
 
 /** 
  * Initialize the SDK 
