@@ -51,19 +51,19 @@ $formToken = $response["answer"]["formToken"];
   <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
 
   <script type="text/javascript">
-		// RequireJS Configuration
-		var requirejs = {
-			paths: {
-				krypton : '<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V4.0/stable/kr-payment-form.min'
-			}
-		};
+    // RequireJS Configuration
+    var requirejs = {
+        paths: {
+            krypton : '<?php echo $client->getClientEndpoint();?>/static/js/krypton-client/V4.0/stable/kr-payment-form.min'
+        }
+    };
   </script>
   
   <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js" type="text/javascript"></script>
 
   <!-- Javascript form library loaded with requirejs-->
   <script type="text/javascript">
-		requirejs(["krypton"], function() {
+    requirejs(["krypton"], function() {
       // use KR global variable to manipulate the form library
       // for example here, we intercept the error message
       KR.onError( function(event) { 
@@ -72,8 +72,8 @@ $formToken = $response["answer"]["formToken"];
         var myMessage = code + ": " + message; 
         console.log(myMessage);
       });
-    });	
-	</script>
+    });    
+    </script>
 
   <!-- theme and plugins. should be loaded after the javascript library -->
   <!-- not mandatory but helps to have a nice payment form out of the box -->
