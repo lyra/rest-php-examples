@@ -69,14 +69,17 @@ $formToken = $response["answer"]["formToken"];
 
   <script type="text/javascript">
     $(document).ready(function() {
-      window.KR.onFormReady(() => {
-        KR.post("/paymentDone/submit", {
-            callback: paymentStore => {
-              $(".kr-payment-button > span:first").html(paymentStore.clientAnswer.orderStatus);
-              $(".kr-spinner").hide();
-              $(".kr-payment-button > span:first").show()
-            }
-        });
+      KR.onSubmit( function(event) {
+        /* Change the button label to the orderStatus */
+        $(".kr-payment-button > span:first").html(event.clientAnswer.orderStatus);
+        $(".kr-spinner").hide();
+        $(".kr-payment-button > span:first").show();
+        
+        /* return values:
+         * true: kr-post-success-url is called using POST
+         * false: kr-post-success-url is not called, execution stops.
+         */
+        return false;
       });
     });
   </script>
