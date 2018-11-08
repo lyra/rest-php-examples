@@ -19,7 +19,7 @@ require_once __DIR__ . '/helpers.php';
 /**
  * to simulate an IPN call with CURL, uncomment the following code:
  */
-//$_POST = getIPNSimulatedPOSTData();
+$_POST = getIPNSimulatedPOSTData();
 
 /** 
  * Initialize the SDK 
@@ -42,7 +42,8 @@ if (!$client->checkHash($client->getPassword())) {
 }
 
 /* Retrieve the IPN content */
-$formAnswer = $client->getParsedFormAnswer();
+$rawAnswer = $client->getParsedFormAnswer();
+$formAnswer = $rawAnswer['kr-answer'];
 
 /* Retrieve the transaction id from the IPN data */
 $transaction = $formAnswer['transactions'][0];
@@ -60,5 +61,5 @@ $transactionUuid = $transaction['uuid'];
  * You can return want you want but
  * HTTP response code should be 200
  */
-print 'OK!';
+print 'OK! OrderStatus is ' . $orderStatus;
 ?>
