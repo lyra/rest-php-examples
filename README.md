@@ -28,28 +28,27 @@ and go to http://localhost:6980
 
 Copy src/ directory content to your PHP server, and go to *index.html* page.
 
-## Try on on Heroku
+## Try it on Heroku
 
-You can also simply install the php examples on Heroku for free. First you need
+You can easily install our examples on Heroku for free. First you need:
 
 - a valid account, see https://www.heroku.com
-- keroky cli installed: https://devcenter.heroku.com/articles/getting-started-with-php#set-up
+- keroky cli installed locally: https://devcenter.heroku.com/articles/getting-started-with-php#set-up
 
 Next, to deploy php examples, do:
 
-- cd www
 - heroku create
 - git subtree push --prefix www heroku master
 
-Start the container and open it in your web-brower
+Start the container and open it in your web-browser:
 
 - heroku ps:scale web=1
 - heroku open
 
-To publish updated code, do:
+If you do some updates and you want to publish it, do:
 
 - git commit -am"some updates"
 - git push heroku master
 - heroku open
 
-and see yout changes on the web-brower.
+and see your changes on the web-browser.
