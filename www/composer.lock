@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "lyracom/rest-php-sdk",
-            "version": "4.0.1",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lyra/rest-php-sdk.git",
-                "reference": "58c848b9b7caa7f5940d14234910b135f46e1a2c"
+                "reference": "8d7c22c1e99b4121a00f47c46c217f6999145a01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lyra/rest-php-sdk/zipball/58c848b9b7caa7f5940d14234910b135f46e1a2c",
-                "reference": "58c848b9b7caa7f5940d14234910b135f46e1a2c",
+                "url": "https://api.github.com/repos/lyra/rest-php-sdk/zipball/8d7c22c1e99b4121a00f47c46c217f6999145a01",
+                "reference": "8d7c22c1e99b4121a00f47c46c217f6999145a01",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 "rest",
                 "sdk"
             ],
-            "time": "2018-09-24T14:17:27+00:00"
+            "time": "2018-12-11T19:26:57+00:00"
         }
     ],
     "packages-dev": [],

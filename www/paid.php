@@ -56,7 +56,7 @@ $formAnswer = $client->getParsedFormAnswer();
 
 <?php
 /* Check the signature */
-if (!$client->checkHash($client->getSHA256Key())) {
+if (!$client->checkHash()) {
     //something wrong, probably a fraud ....
     signature_error($formAnswer['kr-answer']['transactions'][0]['uuid'], $hashKey, 
                     $client->getLastCalculatedHash(), $_POST['kr-hash']);

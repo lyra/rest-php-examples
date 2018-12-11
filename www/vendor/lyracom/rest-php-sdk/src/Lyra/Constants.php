@@ -3,5 +3,5 @@ namespace Lyra;
 
 class Constants
 {
-    const SDK_VERSION = '4.0.1';
+    const SDK_VERSION = '4.0.2';
 }

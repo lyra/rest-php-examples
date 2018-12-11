@@ -34,7 +34,7 @@ if (empty($_POST)) {
 
 /* Check the signature using password */
 
-if (!$client->checkHash($client->getPassword())) {
+if (!$client->checkHash()) {
     //something wrong, probably a fraud ....
     signature_error($formAnswer['kr-answer']['transactions'][0]['uuid'], $hashKey, 
                     $client->getLastCalculatedHash(), $_POST['kr-hash']);

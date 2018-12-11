@@ -294,7 +294,7 @@ class Client
     /**
      * check kr-answer object signature
      */
-    public function checkHash($key)
+    public function checkHash($key=NULL)
     {
         $supportedHashAlgorithm = array('sha256_hmac');
 
@@ -305,6 +305,17 @@ class Client
 
         /* on some servers, / can be escaped */
         $krAnswer = str_replace('\/', '/', $_POST['kr-answer']);
+
+        /* if key is not defined, we use kr-hash-key POST parameter to choose it */
+        if (is_null($key)) {
+            if ($_POST['kr-hash-key'] == "sha256_hmac") {
+                $key = $this->_hashKey;
+            } elseif ($_POST['kr-hash-key'] == "password") {
+                $key = $this->_password;
+            } else {
+                throw new LyraException("invalid kr-hash-key POST parameter");
+            }
+        }
     
         $calculatedHash = hash_hmac('sha256', $krAnswer, $key);
         $this->_lastCalculatedHash = $calculatedHash;

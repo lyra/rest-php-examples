@@ -45,7 +45,7 @@ require_once('/path/to/php-sdk/autoload.php');
 
 ## SDK Usage
 
-A simple integration example is [available here](https://github.com/lyra/rest-php-examples/blob/master/src/SDKTest.php)
+A simple integration example is [available here](https://github.com/lyra/rest-php-examples/blob/master/www/SDKTest.php)
 
 You can also take a look to our github examples repository: https://github.com/lyra/rest-php-examples
 

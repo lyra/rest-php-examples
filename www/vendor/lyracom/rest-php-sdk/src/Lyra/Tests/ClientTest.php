@@ -14,20 +14,35 @@ class ClientTest extends PHPUnit_Framework_TestCase
     {
         $credentials = array();
         $credentials["username"] = "69876357";
-        $credentials["password"] = "testprivatekey_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M";
+        $credentials["password"] = "testpassword_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M";
         $credentials["endpoint"] = "https://api.payzen.eu";
         $credentials["publicKey"] = "69876357:testpublickey_DEMOPUBLICKEY95me92597fd28tGD4r5";
-        $credentials["sha256Key"] = "ktM7bSeTJpclvpm4eEE9N0LIyoxUvsQ9AAYbQI1xQx7Qh";
+        $credentials["sha256Key"] = "38453613e7f44dc58732bad3dca2bca3";
 
         return $credentials;
     }
 
-    private function fakePostData()
+    private function fakePostData($hashKey)
     {
-        $_POST['kr-hash'] = "e9c3b47330380460880e025a256d98d97aeb26bd6807c3826fa366166ba212b4";
-        $_POST['kr-hash-algorithm'] = "sha256_hmac";
-        $_POST['kr-answer-type'] = "V4\/Payment";
-        $_POST['kr-answer'] = '{"shopId":"33148340","orderCycle":"CLOSED","orderStatus":"PAID","orderDetails":{"orderTotalAmount":990,"orderCurrency":"EUR","mode":"TEST","orderId":"myOrderId-415662","_type":"V3.1\/OrderDetails"},"transactions":[{"uuid":"a84a1267f1b342f4baf8eb9a7a6e86df","status":"PAID","detailedStatus":"AUTHORISED","_type":"V3.1\/BrowserRequestTransaction"}],"serverDate":"2018-05-29T15:04:10+00:00","_type":"V3.1\/BrowserRequest"}';
+        if ($hashKey == "sha256_hmac_php53") {
+            $_POST['kr-hash'] = "4d57a308d7d8a89a989e8dc54613fe5f7d353a6c749a9769f5e9b9073d5720af";
+            $_POST['kr-hash-key'] = "sha256_hmac";
+            $_POST['kr-hash-algorithm'] = "sha256_hmac";
+            $_POST['kr-answer-type'] = "V4/Payment";
+            $_POST['kr-answer'] = '{"shopId":"69876357","orderCycle":"CLOSED","orderStatus":"PAID","serverDate":"2018-12-11T19:03:46+00:00","orderDetails":{"orderTotalAmount":250,"orderCurrency":"EUR","mode":"TEST","orderId":null,"_type":"V4\/OrderDetails"},"customer":{"billingDetails":{"address":null,"category":null,"cellPhoneNumber":null,"city":null,"country":null,"district":null,"firstName":null,"identityCode":null,"language":"EN","lastName":null,"phoneNumber":null,"state":null,"streetNumber":null,"title":null,"zipCode":null,"_type":"V4\/Customer\/BillingDetails"},"email":"sample@example.com","reference":null,"shippingDetails":{"address":null,"address2":null,"category":null,"city":null,"country":null,"deliveryCompanyName":null,"district":null,"firstName":null,"identityCode":null,"lastName":null,"legalName":null,"phoneNumber":null,"shippingMethod":null,"shippingSpeed":null,"state":null,"streetNumber":null,"zipCode":null,"_type":"V4\/Customer\/ShippingDetails"},"extraDetails":{"browserAccept":null,"fingerPrintId":null,"ipAddress":"90.71.64.161","browserUserAgent":"Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/70.0.3538.110 Safari\/537.36","_type":"V4\/Customer\/ExtraDetails"},"shoppingCart":{"insuranceAmount":null,"shippingAmount":null,"taxAmount":null,"cartItemInfo":null,"_type":"V4\/Customer\/ShoppingCart"},"_type":"V4\/Customer\/Customer"},"transactions":[{"shopId":"69876357","uuid":"c97b7e6f3dbc4c239baf283654f34710","amount":250,"currency":"EUR","paymentMethodType":"CARD","paymentMethodToken":null,"status":"PAID","detailedStatus":"AUTHORISED","operationType":"DEBIT","effectiveStrongAuthentication":"DISABLED","creationDate":"2018-12-11T19:03:45+00:00","errorCode":null,"errorMessage":null,"detailedErrorCode":null,"detailedErrorMessage":null,"metadata":null,"transactionDetails":{"liabilityShift":"NO","effectiveAmount":250,"effectiveCurrency":"EUR","creationContext":"CHARGE","cardDetails":{"paymentSource":"EC","manualValidation":"NO","expectedCaptureDate":"2018-12-11T19:03:45+00:00","effectiveBrand":"CB","pan":"497010XXXXXX0055","expiryMonth":11,"expiryYear":2021,"country":"FR","emisorCode":null,"effectiveProductCode":"F","legacyTransId":"908733","legacyTransDate":"2018-12-11T19:03:38+00:00","paymentMethodSource":"NEW","authorizationResponse":{"amount":250,"currency":"EUR","authorizationDate":"2018-12-11T19:03:45+00:00","authorizationNumber":"3fbbc6","authorizationResult":"0","authorizationMode":"FULL","_type":"V4\/PaymentMethod\/Details\/Cards\/CardAuthorizationResponse"},"captureResponse":{"refundAmount":null,"captureDate":null,"captureFileNumber":null,"refundCurrency":null,"_type":"V4\/PaymentMethod\/Details\/Cards\/CardCaptureResponse"},"threeDSResponse":{"authenticationResultData":{"transactionCondition":"COND_3D_ERROR","enrolled":"UNKNOWN","status":"UNKNOWN","eci":null,"xid":null,"cavvAlgorithm":null,"cavv":null,"signValid":null,"brand":"VISA","_type":"V4\/PaymentMethod\/Details\/Cards\/CardAuthenticationResponse"},"_type":"V4\/PaymentMethod\/Details\/Cards\/ThreeDSResponse"},"markAuthorizationResponse":{"amount":null,"currency":null,"authorizationDate":null,"authorizationNumber":null,"authorizationResult":null,"_type":"V4\/PaymentMethod\/Details\/Cards\/MarkAuthorizationResponse"},"_type":"V4\/PaymentMethod\/Details\/CardDetails"},"parentTransactionUuid":null,"mid":"6969696","sequenceNumber":1,"additionalFields":{"installmentNumber":null,"_type":"V4\/PaymentMethod\/Details\/AdditionalFields"},"_type":"V4\/TransactionDetails"},"_type":"V4\/PaymentTransaction"}],"_type":"V4\/Payment"}';
+        } elseif ($hashKey == "sha256_hmac") {
+            $_POST['kr-hash'] = "4d57a308d7d8a89a989e8dc54613fe5f7d353a6c749a9769f5e9b9073d5720af";
+            $_POST['kr-hash-key'] = "sha256_hmac";
+            $_POST['kr-hash-algorithm'] = "sha256_hmac";
+            $_POST['kr-answer-type'] = "V4/Payment";
+            $_POST['kr-answer'] = '{"shopId":"69876357","orderCycle":"CLOSED","orderStatus":"PAID","serverDate":"2018-12-11T19:03:46+00:00","orderDetails":{"orderTotalAmount":250,"orderCurrency":"EUR","mode":"TEST","orderId":null,"_type":"V4/OrderDetails"},"customer":{"billingDetails":{"address":null,"category":null,"cellPhoneNumber":null,"city":null,"country":null,"district":null,"firstName":null,"identityCode":null,"language":"EN","lastName":null,"phoneNumber":null,"state":null,"streetNumber":null,"title":null,"zipCode":null,"_type":"V4/Customer/BillingDetails"},"email":"sample@example.com","reference":null,"shippingDetails":{"address":null,"address2":null,"category":null,"city":null,"country":null,"deliveryCompanyName":null,"district":null,"firstName":null,"identityCode":null,"lastName":null,"legalName":null,"phoneNumber":null,"shippingMethod":null,"shippingSpeed":null,"state":null,"streetNumber":null,"zipCode":null,"_type":"V4/Customer/ShippingDetails"},"extraDetails":{"browserAccept":null,"fingerPrintId":null,"ipAddress":"90.71.64.161","browserUserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36","_type":"V4/Customer/ExtraDetails"},"shoppingCart":{"insuranceAmount":null,"shippingAmount":null,"taxAmount":null,"cartItemInfo":null,"_type":"V4/Customer/ShoppingCart"},"_type":"V4/Customer/Customer"},"transactions":[{"shopId":"69876357","uuid":"c97b7e6f3dbc4c239baf283654f34710","amount":250,"currency":"EUR","paymentMethodType":"CARD","paymentMethodToken":null,"status":"PAID","detailedStatus":"AUTHORISED","operationType":"DEBIT","effectiveStrongAuthentication":"DISABLED","creationDate":"2018-12-11T19:03:45+00:00","errorCode":null,"errorMessage":null,"detailedErrorCode":null,"detailedErrorMessage":null,"metadata":null,"transactionDetails":{"liabilityShift":"NO","effectiveAmount":250,"effectiveCurrency":"EUR","creationContext":"CHARGE","cardDetails":{"paymentSource":"EC","manualValidation":"NO","expectedCaptureDate":"2018-12-11T19:03:45+00:00","effectiveBrand":"CB","pan":"497010XXXXXX0055","expiryMonth":11,"expiryYear":2021,"country":"FR","emisorCode":null,"effectiveProductCode":"F","legacyTransId":"908733","legacyTransDate":"2018-12-11T19:03:38+00:00","paymentMethodSource":"NEW","authorizationResponse":{"amount":250,"currency":"EUR","authorizationDate":"2018-12-11T19:03:45+00:00","authorizationNumber":"3fbbc6","authorizationResult":"0","authorizationMode":"FULL","_type":"V4/PaymentMethod/Details/Cards/CardAuthorizationResponse"},"captureResponse":{"refundAmount":null,"captureDate":null,"captureFileNumber":null,"refundCurrency":null,"_type":"V4/PaymentMethod/Details/Cards/CardCaptureResponse"},"threeDSResponse":{"authenticationResultData":{"transactionCondition":"COND_3D_ERROR","enrolled":"UNKNOWN","status":"UNKNOWN","eci":null,"xid":null,"cavvAlgorithm":null,"cavv":null,"signValid":null,"brand":"VISA","_type":"V4/PaymentMethod/Details/Cards/CardAuthenticationResponse"},"_type":"V4/PaymentMethod/Details/Cards/ThreeDSResponse"},"markAuthorizationResponse":{"amount":null,"currency":null,"authorizationDate":null,"authorizationNumber":null,"authorizationResult":null,"_type":"V4/PaymentMethod/Details/Cards/MarkAuthorizationResponse"},"_type":"V4/PaymentMethod/Details/CardDetails"},"parentTransactionUuid":null,"mid":"6969696","sequenceNumber":1,"additionalFields":{"installmentNumber":null,"_type":"V4/PaymentMethod/Details/AdditionalFields"},"_type":"V4/TransactionDetails"},"_type":"V4/PaymentTransaction"}],"_type":"V4/Payment"}';
+        } elseif ($hashKey == "password") {
+            $_POST['kr-hash'] = "88fb7b4838a73c2674ca00ee545454d78dd4b1b733a07c855a1d4460d4417f85";
+            $_POST['kr-hash-key'] = "password";
+            $_POST['kr-hash-algorithm'] = "sha256_hmac";
+            $_POST['kr-answer-type'] = "V4/Payment";
+            $_POST['kr-answer'] = '{"shopId":"69876357","orderCycle":"CLOSED","orderStatus":"PAID","serverDate":"2018-12-11T19:09:32+00:00","orderDetails":{"orderTotalAmount":990,"orderCurrency":"EUR","mode":"TEST","orderId":"myOrderId-618776","_type":"V4/OrderDetails"},"customer":{"billingDetails":{"address":null,"category":null,"cellPhoneNumber":null,"city":null,"country":null,"district":null,"firstName":null,"identityCode":null,"language":"FR","lastName":null,"phoneNumber":null,"state":null,"streetNumber":null,"title":null,"zipCode":null,"_type":"V4/Customer/BillingDetails"},"email":"sample@example.com","reference":null,"shippingDetails":{"address":null,"address2":null,"category":null,"city":null,"country":null,"deliveryCompanyName":null,"district":null,"firstName":null,"identityCode":null,"lastName":null,"legalName":null,"phoneNumber":null,"shippingMethod":null,"shippingSpeed":null,"state":null,"streetNumber":null,"zipCode":null,"_type":"V4/Customer/ShippingDetails"},"extraDetails":{"browserAccept":null,"fingerPrintId":null,"ipAddress":"90.71.64.161","browserUserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36","_type":"V4/Customer/ExtraDetails"},"shoppingCart":{"insuranceAmount":null,"shippingAmount":null,"taxAmount":null,"cartItemInfo":null,"_type":"V4/Customer/ShoppingCart"},"_type":"V4/Customer/Customer"},"transactions":[{"shopId":"69876357","uuid":"017574bda28e4f1d8413b97fc65c8197","amount":990,"currency":"EUR","paymentMethodType":"CARD","paymentMethodToken":null,"status":"PAID","detailedStatus":"AUTHORISED","operationType":"DEBIT","effectiveStrongAuthentication":"DISABLED","creationDate":"2018-12-11T19:09:32+00:00","errorCode":null,"errorMessage":null,"detailedErrorCode":null,"detailedErrorMessage":null,"metadata":null,"transactionDetails":{"liabilityShift":"NO","effectiveAmount":990,"effectiveCurrency":"EUR","creationContext":"CHARGE","cardDetails":{"paymentSource":"EC","manualValidation":"NO","expectedCaptureDate":"2018-12-11T19:09:32+00:00","effectiveBrand":"CB","pan":"497010XXXXXX0055","expiryMonth":11,"expiryYear":2021,"country":"FR","emisorCode":null,"effectiveProductCode":"F","legacyTransId":"908967","legacyTransDate":"2018-12-11T19:09:26+00:00","paymentMethodSource":"NEW","authorizationResponse":{"amount":990,"currency":"EUR","authorizationDate":"2018-12-11T19:09:32+00:00","authorizationNumber":"3fd0e3","authorizationResult":"0","authorizationMode":"FULL","_type":"V4/PaymentMethod/Details/Cards/CardAuthorizationResponse"},"captureResponse":{"refundAmount":null,"captureDate":null,"captureFileNumber":null,"refundCurrency":null,"_type":"V4/PaymentMethod/Details/Cards/CardCaptureResponse"},"threeDSResponse":{"authenticationResultData":{"transactionCondition":"COND_3D_ERROR","enrolled":"UNKNOWN","status":"UNKNOWN","eci":null,"xid":null,"cavvAlgorithm":null,"cavv":null,"signValid":null,"brand":"VISA","_type":"V4/PaymentMethod/Details/Cards/CardAuthenticationResponse"},"_type":"V4/PaymentMethod/Details/Cards/ThreeDSResponse"},"markAuthorizationResponse":{"amount":null,"currency":null,"authorizationDate":null,"authorizationNumber":null,"authorizationResult":null,"_type":"V4/PaymentMethod/Details/Cards/MarkAuthorizationResponse"},"_type":"V4/PaymentMethod/Details/CardDetails"},"fraudManagement":null,"parentTransactionUuid":null,"mid":"6969696","sequenceNumber":1,"additionalFields":{"installmentNumber":null,"_type":"V4/PaymentMethod/Details/AdditionalFields"},"_type":"V4/TransactionDetails"},"_type":"V4/PaymentTransaction"}],"_type":"V4/Payment"}';
+        }
     }
 
     /**
@@ -350,7 +365,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
     public function testGetParsedFormAnswer()
     {
         $client = new Client();
-        $this->fakePostData();
+        $this->fakePostData('sha256_hmac_php53');
         $answer = $client->getParsedFormAnswer();
 
         $this->assertEquals($_POST['kr-hash'], $answer['kr-hash']);
@@ -365,18 +380,47 @@ class ClientTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * ./vendor/bin/phpunit --filter testCheckHash256HMAC src/Lyra/Tests/ClientTest.php
+     * ./vendor/bin/phpunit --filter testCheckManualHash256HMAC src/Lyra/Tests/ClientTest.php
      */
-    public function testCheckHash256HMAC()
+    public function testCheckManualHash256HMAC()
     {
         $client = new Client();
         $credentials = $this->getCredentials();
-        $this->fakePostData();
         $this->assertNull($client->getLastCalculatedHash());
 
         $client->setSHA256Key($credentials["sha256Key"]);
+        $this->fakePostData('sha256_hmac');
         $isValid = $client->checkHash($client->getSHA256Key());
+        $this->assertTrue($isValid);
+        $this->assertNotNull($client->getLastCalculatedHash());
 
+        $client->setPassword($credentials["password"]);
+        $this->fakePostData('password');
+        $isValid = $client->checkHash($client->getPassword());
+        $this->assertTrue($isValid);
+        $this->assertNotNull($client->getLastCalculatedHash());
+    }
+
+    /**
+     * ./vendor/bin/phpunit --filter testCheckAutoHash256HMAC src/Lyra/Tests/ClientTest.php
+     */
+    public function testCheckAutoHash256HMAC()
+    {
+        $client = new Client();
+        $credentials = $this->getCredentials();
+        $client->setSHA256Key($credentials["sha256Key"]);
+        $client->setPassword($credentials['password']);
+
+        /* check browser POST data hash */
+        $this->fakePostData('sha256_hmac');
+        $this->assertNull($client->getLastCalculatedHash());
+        $isValid = $client->checkHash();
+        $this->assertTrue($isValid);
+        $this->assertNotNull($client->getLastCalculatedHash());
+
+        /* check IPN POST data hash */
+        $this->fakePostData('password');
+        $isValid = $client->checkHash();
         $this->assertTrue($isValid);
         $this->assertNotNull($client->getLastCalculatedHash());
     }
