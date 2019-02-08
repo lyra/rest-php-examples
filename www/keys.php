@@ -18,4 +18,3 @@ Lyra\Client::setDefaultPublicKey("69876357:testpublickey_DEMOPUBLICKEY95me92597f
 
 /* SHA256 key */
 Lyra\Client::setDefaultSHA256Key("38453613e7f44dc58732bad3dca2bca3");
-
