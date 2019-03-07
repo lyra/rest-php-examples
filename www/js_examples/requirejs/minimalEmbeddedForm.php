@@ -85,8 +85,8 @@ $formToken = $response["answer"]["formToken"];
   <!-- payment form with configuration directives -->
   <div class="kr-embedded"
        kr-public-key="<?php echo $client->getPublicKey();?>"
-       kr-post-url-success="paid.php"
-       kr-post-url-refused="refused.php"
+       kr-post-url-success="/paid.php"
+       kr-post-url-refused="/refused.php"
        kr-form-token="<?php echo $formToken;?>">
 
     <!-- payment form fields -->
