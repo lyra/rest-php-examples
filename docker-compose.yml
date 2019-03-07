@@ -3,4 +3,4 @@ rest_php_examples:
   volumes:
     - ./www/:/var/www/html/
   ports:
-    - 6981:80
+    - 6980:80
