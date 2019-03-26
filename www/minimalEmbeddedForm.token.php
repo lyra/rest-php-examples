@@ -24,7 +24,7 @@ $client = new Lyra\Client();
  */
 $store = array("amount" => 250, 
 "currency" => "EUR", 
-"formAction" => "REGISTER_PAY",
+"formAction" => "ASK_REGISTER_PAY",
 "customer" => array(
   "email" => "sample@example.com",
   "orderId" => uniqid("MyOrderId")
