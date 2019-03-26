@@ -10,8 +10,8 @@
  * I initialize the PHP SDK
  */
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/keys.php';
-require_once __DIR__ . '/helpers.PCI.php';
+require_once __DIR__ . '/keys.PCI.php';
+require_once __DIR__ . '/helpers.php';
 
 /** 
  * Initialize the SDK 
@@ -34,19 +34,16 @@ $card = array(
  * starting to create a transaction and register the card
  */
 $store = array(
-  "amount" => 250, 
-  "currency" => "EUR",
-  "formAction" => "REGISTER_PAY",
+  "orderId" => uniqid("MyOrderId"),
   "paymentForms" => array($card),
   "customer" => array(
     "email" => "sample@example.com",
-    "orderId" => uniqid("MyOrderId")
 ));
 
 /**
  * do the web-service call
  */
-$response = $client->post("V4/Charge/CreatePayment", $store);
+$response = $client->post("V4/Charge/CreateToken", $store);
 
 /* I check if there is some errors */
 if ($response['status'] != 'SUCCESS') {

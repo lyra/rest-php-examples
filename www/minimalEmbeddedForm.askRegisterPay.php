@@ -23,12 +23,15 @@ $client = new Lyra\Client();
  * I create a formToken
  */
 $store = array(
+  "amount" => 250, 
+  "currency" => "EUR", 
+  "formAction" => "ASK_REGISTER_PAY",
   "orderId" => uniqid("MyOrderId"),
   "customer" => array(
-    "email" => "sample@example.com",
+    "email" => "sample@example.com"
 ));
 
-$response = $client->post("V4/Charge/CreateToken", $store);
+$response = $client->post("V4/Charge/CreatePayment", $store);
 
 /* I check if there is some errors */
 if ($response['status'] != 'SUCCESS') {
