@@ -24,9 +24,9 @@ $client = new Lyra\Client();
  */
 $store = array("amount" => 250, 
 "currency" => "EUR", 
+"orderId" => uniqid("MyOrderId"),
 "customer" => array(
-  "email" => "sample@example.com",
-  "orderId" => uniqid("MyOrderId")
+  "email" => "sample@example.com"
 ));
 $response = $client->post("V4/Charge/CreatePayment", $store);
 

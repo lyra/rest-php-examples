@@ -16,9 +16,9 @@ if (isset($_GET['requestObject'])) {
 } else {
     $store = array( "amount" => 250, 
                     "currency" => "EUR", 
+                    "orderId" => uniqid("MyOrderId"),
                     "customer" => array(
-                    "email" => "sample@example.com",
-                    "orderId" => uniqid("MyOrderId")
+                    "email" => "sample@example.com"
                     ));
 }
 
