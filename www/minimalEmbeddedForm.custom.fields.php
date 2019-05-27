@@ -76,7 +76,7 @@ $formToken = $response["answer"]["formToken"];
   <div class="kr-embedded"
    kr-form-token="<?php echo $formToken;?>">
 
-   <!-- custom fields -->
+   <!-- custom text field -->
    <input type="text"
           name="acme-email"
           placeholder="email"
@@ -88,6 +88,13 @@ $formToken = $response["answer"]["formToken"];
     <div class="kr-pan"></div>
     <div class="kr-expiry"></div>
     <div class="kr-security-code"></div>  
+
+    <!-- custom checkbox field -->
+    <input type='checkbox'
+           name='acme-terms'
+           label="add me to your mailing list" 
+           class="kr-theme"
+           required/>
 
     <!-- payment form submit button -->
     <button class="kr-payment-button"></button>
