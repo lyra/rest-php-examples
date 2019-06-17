@@ -30,7 +30,7 @@ $store = array(
 
 $response = $client->post("V4/Charge/CreateToken", $store);
 
-/* I check if there is some errors */
+/* I check if there are some errors */
 if ($response['status'] != 'SUCCESS') {
     /* an error occurs, I throw an exception */
     display_error($response);

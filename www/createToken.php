@@ -28,7 +28,7 @@ if (isset($_GET['requestObject'])) {
 
 $response = $client->post("V4/Charge/CreatePayment", $store);
 
-//* I check if there is some errors */
+//* I check if there are some errors */
 if ($response['status'] != 'SUCCESS') {
     /* an error occurs */
     $error = $response['answer'];
