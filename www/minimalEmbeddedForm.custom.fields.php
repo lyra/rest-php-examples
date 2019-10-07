@@ -96,6 +96,11 @@ $formToken = $response["answer"]["formToken"];
            class="kr-theme"
            required/>
 
+    <!-- custom hidden field -->
+    <input type='hidden'
+           name='acme-hidden'
+           value='my hidden value'/>
+
     <!-- payment form submit button -->
     <button class="kr-payment-button"></button>
 
