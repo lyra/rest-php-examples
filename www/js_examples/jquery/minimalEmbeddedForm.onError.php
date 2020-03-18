@@ -74,7 +74,7 @@ $formToken = $response["answer"]["formToken"];
             var message = event.errorMessage;
             var myMessage = code + ": " + message;
 
-            $("#customerror").html(myMessage);
+            document.getElementsByClassName("customerror")[0].innerText = myMessage;
           });
     });
   </script>
