@@ -74,6 +74,14 @@ $formToken = $response["answer"]["formToken"];
             var message = event.errorMessage;
             var myMessage = code + ": " + message;
 
+            try {
+              /* if client answer exists, a refused transaction has been created */
+              /* it's not always the case. For example, if the form is empty,    */
+              /* error is raised before transaction creation                     */
+              var uuid = event.metadata.answer.clientAnswer.transactions[0].uuid;
+              myMessage += "\ntansaction uuid: " + uuid;
+            } catch{}
+
             document.getElementsByClassName("customerror")[0].innerText = myMessage;
           });
     });
@@ -92,6 +100,6 @@ $formToken = $response["answer"]["formToken"];
     <!-- payment form submit button -->
     <button class="kr-payment-button"></button>
   </div>  
-  <div id="customerror"></div>
+  <div class="customerror"></div>
 </body>
 </html>
