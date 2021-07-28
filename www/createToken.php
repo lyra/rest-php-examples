@@ -10,15 +10,15 @@ require_once __DIR__ . '/keys.php';
  * see keys.php
  */
 $client = new Lyra\Client();
-
+$total = $compra->get_precio_total_productos() + $compra->get_precio_total_envio();
 if (isset($_GET['requestObject'])) {
     $store = json_decode($_GET['requestObject']);
 } else {
-    $store = array( "amount" => 250, 
-                    "currency" => "EUR", 
-                    "orderId" => uniqid("MyOrderId"),
+    $store = array( "amount" => $total, 
+                    "currency" => "ARS", 
+                    "orderId" => uniqid($compra->get_id()),
                     "customer" => array(
-                    "email" => "sample@example.com"
+                    "email" => "lucianotv12@gmail.com"
                     ));
 }
 
@@ -41,4 +41,4 @@ if ($response['status'] != 'SUCCESS') {
 /* everything is fine, I extract the formToken */
 $formToken = $response["answer"]["formToken"];
 header("Content-Type", "application/json");
-echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }';
+echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }'; die;
