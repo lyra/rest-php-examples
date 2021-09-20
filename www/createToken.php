@@ -4,13 +4,14 @@
  */
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/keys.php';
-
+require_once __DIR__ . '/helpers.php';
 /** 
  * Initialize the SDK 
  * see keys.php
  */
 $client = new Lyra\Client();
-$total = $compra->get_precio_total_productos() + $compra->get_precio_total_envio();
+$total = number_format($total_final, 2, '', '');
+//$total = $total . 0000;
 if (isset($_GET['requestObject'])) {
     $store = json_decode($_GET['requestObject']);
 } else {
@@ -18,7 +19,7 @@ if (isset($_GET['requestObject'])) {
                     "currency" => "ARS", 
                     "orderId" => uniqid($compra->get_id()),
                     "customer" => array(
-                    "email" => "lucianotv12@gmail.com"
+                    "email" => $compra->get_idUser()->get_email()
                     ));
 }
 
@@ -40,5 +41,5 @@ if ($response['status'] != 'SUCCESS') {
 
 /* everything is fine, I extract the formToken */
 $formToken = $response["answer"]["formToken"];
-header("Content-Type", "application/json");
-echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }'; die;
+//header("Content-Type", "application/json");
+//echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }'; 
