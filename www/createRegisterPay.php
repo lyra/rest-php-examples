@@ -21,6 +21,7 @@ if (isset($_GET['requestObject'])) {
         "orderId" => uniqid($compra->get_id()),
         "customer" => array(
             "email" => $compra->get_idUser()->get_email()
+
         ));
 }
 
