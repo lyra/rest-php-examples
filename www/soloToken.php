@@ -16,7 +16,6 @@ if (isset($_GET['requestObject'])) {
     $store = json_decode($_GET['requestObject']);
 } else {
     $store = array( "amount" => $total,
-        "formAction" => "REGISTER_PAY",
         "currency" => "ARS",
         "orderId" => uniqid($compra->get_id()),
         "customer" => array(

@@ -3,3 +3,9 @@
 www/tests
 sync.sh
 /nbproject/private/
+.idea/lyra.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/php.xml
+.idea/vcs.xml
+.idea/workspace.xml
