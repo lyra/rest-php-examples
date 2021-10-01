@@ -17,6 +17,7 @@ if (isset($_GET['requestObject'])) {
 } else {
     $store = array( "amount" => $total,
         "formAction" => "REGISTER_PAY",
+        "currency" => "ARS",
         "orderId" => uniqid($compra->get_id()),
         "customer" => array(
             "email" => $compra->get_idUser()->get_email()
