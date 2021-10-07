@@ -16,11 +16,9 @@ if (isset($_GET['requestObject'])) {
     $store = json_decode($_GET['requestObject']);
 } else {
     $store = array( "amount" => $total, 
-                    "currency" => "ARS", 
-                    "orderId" => uniqid($compra->get_id()),
-                    "customer" => array(
-                    "email" => $compra->get_idUser()->get_email()
-                    ));
+                    "formAction" => "REGISTER_PAY",         
+                    "currency" => "ARS",
+                    "orderId" => uniqid($compra->get_id()));
 }
 
 /**

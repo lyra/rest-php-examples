@@ -19,16 +19,11 @@ if (isset($_GET['requestObject'])) {
     $store = array( "amount" => $total,
         "currency" => "ARS",
         "paymentMethodToken"=> $token,
-        "formAction" => "SILENT",
-        "orderId" => uniqid($compra->get_id()),
-        "customer" => array(
-            "email" => $compra->get_idUser()->get_email(),
-            "reference"=> "12345678"
-        )
+        "formAction" => "SILENT"
         );
 }
 
-
+print_r($store);
 
 /**
  * I create a formToken
@@ -48,6 +43,7 @@ if ($response['status'] != 'SUCCESS') {
 
 /* everything is fine, I extract the formToken */
 $Token = $response["answer"]["paymentMethodToken"];
+
 //header("Content-Type", "application/json");
 //echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }';
 
