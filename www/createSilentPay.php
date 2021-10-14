@@ -23,7 +23,7 @@ if (isset($_GET['requestObject'])) {
         );
 }
 
-print_r($store);
+//print_r($store);
 
 /**
  * I create a formToken
