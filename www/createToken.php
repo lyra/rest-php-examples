@@ -10,8 +10,6 @@ require_once __DIR__ . '/helpers.php';
  * see keys.php
  */
 $client = new Lyra\Client();
-echo 'toy'; 
-print_r($client);die;
 $total = number_format($total_final, 2, '', '');
 //$total = $total . 0000;
 if (isset($_GET['requestObject'])) {
