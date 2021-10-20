@@ -10,14 +10,14 @@ require_once __DIR__ . '/helpers.php';
  * see keys.php
  */
 $client = new Lyra\Client();
-$total = number_format($total_final, 2, '', '');
-$uuid = $uu_id;
+
+
 //$total = $total . 0000;
 if (isset($_GET['requestObject'])) {
     $store = json_decode($_GET['requestObject']);
 } else {
     $store = array( "amount" => $total,
-        "currency" => "ARS",
+        "currency" => "$currency",
         "uuid" => $uuid
         );
 }
@@ -26,7 +26,7 @@ if (isset($_GET['requestObject'])) {
  * I create a formToken
  */
 
-$response = $client->post("V4/Transaction/Update", $store);
+$response = $client->post("V4/Transaction/CancelOrRefund", $store);
 
 //* I check if there are some errors */
 if ($response['status'] != 'SUCCESS') {
@@ -42,5 +42,4 @@ if ($response['status'] != 'SUCCESS') {
 $formToken = $response["answer"]["formToken"];
 //header("Content-Type", "application/json");
 //echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }';
-
 
