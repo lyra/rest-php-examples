@@ -3,12 +3,13 @@
  * I initialize the PHP SDK
  */
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/keys.php';
+require __DIR__ . '/keys.php';
 require_once __DIR__ . '/helpers.php';
 /**
  * Initialize the SDK
  * see keys.php
  */
+
 $client = new Lyra\Client();
 $total = number_format($total_final, 2, '', '');
 $token = $payToken;
@@ -19,16 +20,11 @@ if (isset($_GET['requestObject'])) {
     $store = array( "amount" => $total,
         "currency" => "ARS",
         "paymentMethodToken"=> $token,
-        "formAction" => "SILENT",
-        "orderId" => uniqid($compra->get_id()),
-        "customer" => array(
-            "email" => $compra->get_idUser()->get_email(),
-            "reference"=> "12345678"
-        )
+        "formAction" => "SILENT"
         );
 }
 
-
+//print_r($store);
 
 /**
  * I create a formToken
@@ -48,6 +44,7 @@ if ($response['status'] != 'SUCCESS') {
 
 /* everything is fine, I extract the formToken */
 $Token = $response["answer"]["paymentMethodToken"];
+
 //header("Content-Type", "application/json");
 //echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }';
 
