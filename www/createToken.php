@@ -18,7 +18,10 @@ if (isset($_GET['requestObject'])) {
     $store = array( "amount" => $total, 
                     "formAction" => "REGISTER_PAY",         
                     "currency" => "ARS",
-                    "orderId" => uniqid($compra->get_id()));
+                    "orderId" => uniqid($compra->get_id()),
+                    "customer" => array(
+                            "email" => $_usuario->get_email())
+                    );
 }
 
 /**
@@ -39,5 +42,6 @@ if ($response['status'] != 'SUCCESS') {
 
 /* everything is fine, I extract the formToken */
 $formToken = $response["answer"]["formToken"];
+
 //header("Content-Type", "application/json");
 //echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }'; 
