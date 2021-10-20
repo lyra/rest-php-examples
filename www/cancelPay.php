@@ -10,14 +10,14 @@ require_once __DIR__ . '/helpers.php';
  * see keys.php
  */
 $client = new Lyra\Client();
-$total = number_format($total_final, 2, '', '');
-$uuid = $uu_id;
+
+
 //$total = $total . 0000;
 if (isset($_GET['requestObject'])) {
     $store = json_decode($_GET['requestObject']);
 } else {
     $store = array( "amount" => $total,
-        "currency" => "ARS",
+        "currency" => "$currency",
         "uuid" => $uuid
         );
 }
