@@ -3,7 +3,7 @@
  * I initialize the PHP SDK
  */
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/keys.php';
+require __DIR__ . '/keys.php';
 require_once __DIR__ . '/helpers.php';
 /**
  * Initialize the SDK
