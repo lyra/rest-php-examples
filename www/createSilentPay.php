@@ -20,7 +20,11 @@ if (isset($_GET['requestObject'])) {
     $store = array( "amount" => $total,
         "currency" => "ARS",
         "paymentMethodToken"=> $token,
-        "formAction" => "SILENT"
+        "formAction" => "SILENT",
+
+        "transactionOptions"=> array(
+                "cardOptions"=> array("installmentNumber"=> $silent_cuotas)
+            )
         );
 }
 
