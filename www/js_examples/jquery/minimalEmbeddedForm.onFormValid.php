@@ -69,7 +69,7 @@ $formToken = $response["answer"]["formToken"];
 
   <script type="text/javascript">
     $(document).ready(function() {
-          KR.onBrandChanged( function({KR, cardInfo}) {
+          KR.onFormValid( function({KR, cardInfo}) {
             var myMessage = "Selected brand: " + cardInfo.brand + ", and bin: " + cardInfo.bin;
 
             $("#custommessage").html(myMessage);
