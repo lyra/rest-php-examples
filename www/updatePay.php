@@ -29,12 +29,12 @@ if (isset($_GET['requestObject'])) {
  * I create a formToken
  */
 
-$response = $client->post("V4/Transaction/Update", $store);
+$responseUpdate = $client->post("V4/Transaction/Update", $store);
 
 //* I check if there are some errors */
-if ($response['status'] != 'SUCCESS') {
+if ($responseUpdate['status'] != 'SUCCESS') {
     /* an error occurs */
-    $error = $response['answer'];
+    $error = $responseUpdate['answer'];
     header("Content-Type", "application/json");
     header('HTTP/1.1 500 Internal Server Error');
     echo '{"error": "' . $error['errorCode'] . '", "_type": "DemoError" }';
@@ -42,7 +42,7 @@ if ($response['status'] != 'SUCCESS') {
 }
 
 /* everything is fine, I extract the formToken */
-$formToken = $response["answer"]["formToken"];
+$formToken = $responseUpdate["answer"]["formToken"];
 //header("Content-Type", "application/json");
 //echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }';
 

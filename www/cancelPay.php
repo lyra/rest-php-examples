@@ -26,20 +26,20 @@ if (isset($_GET['requestObject'])) {
  * I create a formToken
  */
 
-$response = $client->post("V4/Transaction/CancelOrRefund", $store);
+$responseCancel = $client->post("V4/Transaction/CancelOrRefund", $store);
 
 //* I check if there are some errors */
-if ($response['status'] != 'SUCCESS') {
+if ($responseCancel['status'] != 'SUCCESS') {
     /* an error occurs */
-    $error = $response['answer'];
-    header("Content-Type", "application/json");
-    header('HTTP/1.1 500 Internal Server Error');
-    echo '{"error": "' . $error['errorCode'] . '", "_type": "DemoError" }';
-    die();
+//    $error = $responseCancel['answer'];
+//    header("Content-Type", "application/json");
+//    header('HTTP/1.1 500 Internal Server Error');
+//    echo '{"error": "' . $error['errorCode'] . '", "_type": "DemoError" }';
+//    die();
 }
 
 /* everything is fine, I extract the formToken */
-$formToken = $response["answer"]["formToken"];
+//$formToken = $responseCancel["answer"]["formToken"];
 //header("Content-Type", "application/json");
 //echo '{"formToken": "' . $formToken . '"", "_type": "DemoFormToken" }';
 
