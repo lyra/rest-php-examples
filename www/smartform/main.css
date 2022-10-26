@@ -1,0 +1,32 @@
+body {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.kr-smart-form {
+    padding: 50px 100px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsl(227deg 50% 32% / 70%);
+    z-index: 0;
+    transform: skewY(10deg) translateY(-30%);
+    transform-origin: top right;
+}

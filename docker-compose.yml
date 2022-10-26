@@ -1,5 +1,5 @@
 rest_php_examples:
-  image: php:7.0-apache
+  image: php:7.4-apache
   volumes:
     - ./www/:/var/www/html/
   ports:
