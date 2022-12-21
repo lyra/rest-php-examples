@@ -16,5 +16,8 @@ Lyra\Client::setDefaultEndpoint("https://api.payzen.eu");
 /* publicKey and used by the javascript client */
 Lyra\Client::setDefaultPublicKey("69876357:testpublickey_DEMOPUBLICKEY95me92597fd28tGD4r5");
 
+/* Javascript content delivery server */
+Lyra\Client::setDefaultClientEndpoint("https://static.payzen.eu");
+
 /* SHA256 key */
 Lyra\Client::setDefaultSHA256Key("38453613e7f44dc58732bad3dca2bca3");
