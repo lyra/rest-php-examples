@@ -20,7 +20,7 @@
       <script type="text/javascript" src="https://static.payzen.eu/static/js/krypton-client/V4.0/ext/neon.js"></script>
    </head>
    <body>
-      <div class="kr-smart-form" kr-form-token="<?php echo $formToken; ?>" >
+      <div class="kr-smart-form" kr-card-form-expanded kr-form-token="<?php echo $formToken; ?>" >
       </div>
    </body>
 </html>
