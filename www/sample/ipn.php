@@ -4,7 +4,7 @@
    // STEP 1 : check the signature with the password
    if (!checkHash($_POST, PASSWORD)) {
        echo 'Invalid signature. <br />';
-       echo '<pre>' . print_r($_POST, true) . '</pre>';
+       print_r($_POST, true);
        die();
    }
    
