@@ -1,6 +1,9 @@
-rest_php_examples:
-  image: php:7.4-apache
-  volumes:
-    - ./www/:/var/www/html/
-  ports:
-    - 6980:80
+version: "3"
+
+services:
+  rest_php_examples:
+    image: php:7.4-apache
+    volumes:
+      - ./www/:/var/www/html/
+    ports:
+      - 6980:80
