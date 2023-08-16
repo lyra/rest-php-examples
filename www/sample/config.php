@@ -1,19 +1,30 @@
 <?php
+
 /**
  * Define configuration
- */
+  * Configuration initialisation, using Lyra account informations.
+ * provided in your Back Office (Menu: Settings > Shop > API REST Keys).
+ 
+ **/
 
-//define('USERNAME', 'KEY Number 1');
-//define('PASSWORD', 'KEY Number 2');
+// SUBSTITUTE THE KEY NUMBER BY YOUR MERCHANT SHOP (Menu: Settings > Shop > API REST Keys)
+ define('USERNAME', 'KEY Number 1');
+ define('PASSWORD', 'KEY Number 2');
+ define('PUBLIC_KEY', 'KEY Number 3');
+ define('SHA_KEY', 'KEY Number 4');
+ define('SERVER', 'KEY Number 5');
+ $URL_JS = 'KEY Number 6';
 
-/* publicKey and used by the javascript client */
-//define('PUBLIC_KEY', 'KEY Number 3');
+/* To have the configuration of the DEMO SHOP, go to the technical documentary :
+ - step 2 Authenticate
+ _ sample file : config.php
 
-/* SHA256 key */
-//define('SHA_KEY', 'KEY Number 4');
 
-define('USERNAME', '69876357');
-define('PASSWORD', 'testpassword_DEMOPRIVATEKEY23G4475zXZQ2UA5x7M');
-define('PUBLIC_KEY', '69876357:testpublickey_DEMOPUBLICKEY95me92597fd28tGD4r5');
-define('SHA_KEY', '38453613e7f44dc58732bad3dca2bca3');
+ /* DOMAIN_URL :  domain of URL_JS */
+define('DOMAIN_URL', strstr($URL_JS,'/static/',true));
+
 ?>
+
+
+
+
