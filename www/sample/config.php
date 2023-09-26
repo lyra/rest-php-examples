@@ -7,13 +7,13 @@
  
  **/
 
-// SUBSTITUTE THE KEY NUMBER BY YOUR MERCHANT SHOP (Menu: Settings > Shop > API REST Keys)
- define('USERNAME', 'KEY Number 1');
- define('PASSWORD', 'KEY Number 2');
- define('PUBLIC_KEY', 'KEY Number 3');
- define('SHA_KEY', 'KEY Number 4');
- define('SERVER', 'KEY Number 5');
- $URL_JS = 'KEY Number 6';
+// SUBSTITUTE THE !!!CHANGEME!!! BY YOUR MERCHANT SHOP (Menu: Settings > Shop > API REST Keys)
+ define('USERNAME', '!!!CHANGEME!!!');
+ define('PASSWORD', '!!!CHANGEME!!!');
+ define('PUBLIC_KEY', '!!!CHANGEME!!!');
+ define('SHA_KEY', '!!!CHANGEME!!!');
+ define('SERVER', '!!!CHANGEME!!!');
+ $URL_JS = '!!!CHANGEME!!!';
 
 /* To have the configuration of the DEMO SHOP, go to the technical documentary :
  - step 2 Authenticate
